@@ -6,4 +6,5 @@ import real_time_scheduling_system.scheduling.Machine;
 
 public interface ILoadSettings {
 	public Machine[] loadCloudStucture(InputStream inputStream) throws IllegalArgumentException; 
+	public ModelSettings loadModelSettings(InputStream inputStream) throws IllegalArgumentException; 
 }
