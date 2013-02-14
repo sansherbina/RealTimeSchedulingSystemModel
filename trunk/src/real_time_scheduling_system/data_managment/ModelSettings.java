@@ -1,6 +1,8 @@
 package real_time_scheduling_system.data_managment;
 
 public class ModelSettings {
+	public static final int NORMAL_DISTRIBUTION=1;
+	public static final int UNIFORM_DISTRIBUTION=2;
 	private int minimumTaskTime;
 	private int maximumTaskTime;
 	private int inputTaskFlowType;
