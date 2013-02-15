@@ -1,5 +1,6 @@
 package real_time_scheduling_system.scheduling.a_scheduling_algorithm;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -13,7 +14,7 @@ public class OpenList{
 	}
 	
 	public void insert(TaskScheduling taskScheduling){
-		if(taskScheduling.getfValue()<randomGeneratedF){
+		if(taskScheduling.getfValue()>randomGeneratedF){
 			return;
 		}
 		ListIterator<TaskScheduling> iterator=list.listIterator();
@@ -26,7 +27,10 @@ public class OpenList{
 		list.add(taskScheduling);
 	}
 	
-	public void insert(TaskScheduling[] tasksScheduling){
+	public void insert(ArrayList<TaskScheduling> tasksScheduling){
+		if(tasksScheduling==null){
+			return;
+		}
 		for(TaskScheduling taskScheduling:tasksScheduling){
 			insert(taskScheduling);
 		}

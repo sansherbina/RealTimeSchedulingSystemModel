@@ -1,7 +1,9 @@
 package real_time_scheduling_system.flow_generators;
 
-import real_time_scheduling_system.scheduling.Task;
+import java.util.ArrayList;
+
+import real_time_scheduling_system.model.Task;
 
 public interface ITaskFlow {
-	public Task[] generateTasks();
+	public ArrayList<Task> generateTasks();
 }

@@ -9,6 +9,17 @@ public class TaskScheduling{
 	private int[] machineForTask;
 	private float fValue;
 	
+	public static TaskScheduling generateTestScheduling(float[][] executionCost){
+		TaskScheduling taskScheduling=new TaskScheduling(5);
+		taskScheduling.machineForTask[0]=1;
+		taskScheduling.machineForTask[1]=0;
+		taskScheduling.machineForTask[2]=2;
+		taskScheduling.machineForTask[3]=2;
+		taskScheduling.machineForTask[4]=1;
+		taskScheduling.calculateFunctionF(executionCost);
+		return taskScheduling;
+	}
+	
 	public static TaskScheduling generateRandomScheduling(int taskCount, int machinesCount, float[][] executionCost){
 		TaskScheduling taskScheduling=new TaskScheduling(taskCount);
 		for(int i=0;i<taskCount;i++){
@@ -22,18 +33,19 @@ public class TaskScheduling{
 				}
 				machineNumber=(int)(Math.random()*availableMachinesCount);
 				int currentPosition=0;
-				for(int j=0;j<executionCost[0].length;j++){
+				for(int j=0;j<executionCost[i].length;j++){
 					if(executionCost[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
-						currentPosition++;
 						if(currentPosition==machineNumber){
 							machineNumber=j;
 							break;
 						}
+						currentPosition++;
 					}
 				}
 			}
 			taskScheduling.machineForTask[i]=machineNumber;
 		}
+		taskScheduling.calculateFunctionF(executionCost);
 		return taskScheduling;
 	}
 	
@@ -72,7 +84,7 @@ public class TaskScheduling{
 		return fValue;
 	}
 	
-	public TaskScheduling[] generateChildren(float[][] executionCost){
+	public ArrayList<TaskScheduling> generateChildren(float[][] executionCost){
 		for(int i=0;i<machineForTask.length;i++){
 			if(machineForTask[i]==ASchedulingAlgorithm.UNSCHEDULED_TASK){
 				ArrayList<TaskScheduling> children=new ArrayList<TaskScheduling>();
@@ -84,7 +96,7 @@ public class TaskScheduling{
 						children.add(child);
 					}
 				}
-				return (TaskScheduling[])children.toArray();
+				return children;
 			}
 		}
 		return null;
@@ -101,5 +113,10 @@ public class TaskScheduling{
 
 	public int[] getMachineForTask() {
 		return machineForTask;
+	}
+	
+	public String toString(){
+		String result="Machine for task="+Arrays.toString(machineForTask)+" fValue="+fValue;
+		return result;
 	}
 }

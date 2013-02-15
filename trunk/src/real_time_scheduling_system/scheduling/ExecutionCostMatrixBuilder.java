@@ -2,13 +2,17 @@ package real_time_scheduling_system.scheduling;
 
 import java.util.ArrayList;
 
+import real_time_scheduling_system.model.MachineConfiguration;
+import real_time_scheduling_system.model.Task;
+
 public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 
 	@Override
-	public float[][] buildExecutionCostMatrix(Task[] tasks, Machine[] machines, Integer[] unschedulableTasks) {
+	public ExecutionCostMatrix buildExecutionCostMatrix(Task[] tasks, MachineConfiguration[] machines) {
 		if(tasks==null || machines==null || machines.length==0 || tasks.length==0){
 			throw new IllegalArgumentException();
 		}
+		
 		float[][] executionCost=new float[tasks.length][];
 		double[] machinesProcessors=new double[machines.length];
 		for(int i=0;i<machines.length;i++){
@@ -23,7 +27,7 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 					double memmoryRelation=machines[j].getMemmoryCapacity()/tasks[i].getMemmoryCapactity();
 					double machineRelation=machinesProcessors[j]/tasks[i].getProcessor();
 					double relation=(memmoryRelation+machineRelation)/2;
-					executionCost[i][j]=(float)(tasks[i].getOperateTime()/relation);
+					executionCost[i][j]=(float)(tasks[i].getRequestedExecutionTime()/relation);
 				}else{
 					executionCost[i][j]=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION;
 				}
@@ -43,8 +47,7 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 			}
 		}
 		if(unschedulableTasksList.size()==0){
-			unschedulableTasks=null;
-			return executionCost;
+			return new ExecutionCostMatrix(executionCost, null);
 		}
 		float[][] executionCostWithoutUnschedulableTasks=new float[executionCost.length-unschedulableTasksList.size()][];
 		int currentTask=0;
@@ -54,8 +57,7 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 				currentTask++;
 			}
 		}
-		unschedulableTasks=(Integer[])unschedulableTasksList.toArray();
-		return executionCostWithoutUnschedulableTasks;
+		return new ExecutionCostMatrix(executionCostWithoutUnschedulableTasks, unschedulableTasksList);
 	}
 
 }

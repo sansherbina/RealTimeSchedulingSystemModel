@@ -1,10 +1,11 @@
 package real_time_scheduling_system.scheduling.a_scheduling_algorithm;
 
 import java.util.HashMap;
+import real_time_scheduling_system.model.MachineConfiguration;
+import real_time_scheduling_system.model.Task;
+import real_time_scheduling_system.scheduling.ExecutionCostMatrix;
 import real_time_scheduling_system.scheduling.IExecutionCostMatrixBuilder;
 import real_time_scheduling_system.scheduling.ISchedulingAlgorithm;
-import real_time_scheduling_system.scheduling.Machine;
-import real_time_scheduling_system.scheduling.Task;
 
 public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 	private IExecutionCostMatrixBuilder executionCostMatrixBuilder;
@@ -18,17 +19,15 @@ public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 
 	@Override
 	public HashMap<Integer, Integer> scheduleTask(Task[] tasks,
-			Machine[] machines) throws IllegalArgumentException{
+			MachineConfiguration[] machines) throws IllegalArgumentException{
 		if(machines==null || machines.length==0){
 			throw new IllegalArgumentException();
 		}
 		if(tasks==null || tasks.length==0){
 			return new HashMap<Integer, Integer>();
 		}
-		Integer[] unschedulableTasks=null;
-		float[][] executionCostMatrix=executionCostMatrixBuilder.buildExecutionCostMatrix(tasks, machines, unschedulableTasks);
-		TaskScheduling randomGeneratedScheduling=TaskScheduling.generateRandomScheduling(tasks.length, machines.length, executionCostMatrix);
-		randomGeneratedScheduling.calculateFunctionF(executionCostMatrix);
+		ExecutionCostMatrix executionCostMatrix=executionCostMatrixBuilder.buildExecutionCostMatrix(tasks, machines);
+		TaskScheduling randomGeneratedScheduling=TaskScheduling.generateRandomScheduling(tasks.length, machines.length, executionCostMatrix.getExecutionCostMatrix());
 		OpenList openList=new OpenList(randomGeneratedScheduling.getfValue());
 		openList.insert(new TaskScheduling(tasks.length));
 		TaskScheduling resultScheduling=null;
@@ -42,9 +41,9 @@ public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 				resultScheduling=taskScheduling;
 				break;
 			}
-			openList.insert(taskScheduling.generateChildren(executionCostMatrix));
+			openList.insert(taskScheduling.generateChildren(executionCostMatrix.getExecutionCostMatrix()));
 		}
-		
+		System.out.println("Scheduling F result="+resultScheduling.getfValue());
 		HashMap<Integer, Integer> schedulingById=new HashMap<Integer, Integer>();
 		for(int i=0;i<resultScheduling.getMachineForTask().length;i++){
 			int machinePositionInArray=resultScheduling.getMachineForTask()[i];

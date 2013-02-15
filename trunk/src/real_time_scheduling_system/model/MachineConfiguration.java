@@ -1,11 +1,13 @@
-package real_time_scheduling_system.scheduling;
+package real_time_scheduling_system.model;
 
-public class Machine extends AccessLevel{
+import real_time_scheduling_system.scheduling.AccessLevel;
+
+public class MachineConfiguration extends AccessLevel{
 	private int id;
 	private double memmoryCapacity;
 	private double[] processors;
 	
-	public Machine(int id, double memmoryCapacity, double[] processors, int accessLevel) {
+	public MachineConfiguration(int id, double memmoryCapacity, double[] processors, int accessLevel) {
 		super(accessLevel);
 		this.id = id;
 		this.memmoryCapacity = memmoryCapacity;
