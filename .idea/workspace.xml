@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ab0f21-3411-480c-87cd-09b09ed07358" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="a3ab0f21-3411-480c-87cd-09b09ed07358" name="Default" comment="XML Parsed.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/MachineConfigurationCreator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettingsCreator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java" />
+      <change type="DELETED" beforePath="E:\Documents\Dropbox\DifferentShit\workspace\RealTime\settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="E:\Documents\Dropbox\DifferentShit\workspace\RealTime\trunk\src\real_time_scheduling_system\data_managment\SettingsParser.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RealTime.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361137550195" ignored="false" />
+    <file path="/Dummy.txt" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361192673865" ignored="false" />
     <file path="/Machine.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1360784705893" ignored="false" />
     <file path="/Schedul.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1360833666389" ignored="false" />
     <file path="/ILoadSettings.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361122447286" ignored="false" />
     <file path="/SettingsParser.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361137504547" ignored="false" />
+    <file path="/ModelCreator.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361188857107" ignored="false" />
+    <file path="/Test.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361191941772" ignored="false" />
+    <file path="/ModelSettingsCreator.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361192473689" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,58 +77,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ILoadSettings.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ILoadSettings.java">
+      <file leaf-file-name="Test.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="27" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MachineConfiguration.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/model/MachineConfiguration.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="13" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="27" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SettingsParser.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/SettingsParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="127" selection-start="593" selection-end="593" vertical-scroll-proportion="0.28892216">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2131#2138#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XmlException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="20" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XmlDocument.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlDocument.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="177" column="1" selection-start="6830" selection-end="6830" vertical-scroll-proportion="0.0">
+            <state line="19" column="52" selection-start="692" selection-end="692" vertical-scroll-proportion="0.32011893">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -128,15 +88,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XmlNode.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlNode.java">
+      <file leaf-file-name="ModelSettingsCreator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettingsCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="57" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
+            <state line="19" column="40" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#939#948#0" expanded="true" />
-                <element signature="e#1640#1649#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MachineConfigurationCreator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/MachineConfigurationCreator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="80" column="34" selection-start="3760" selection-end="3760" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1637#1659#0" expanded="true" />
+                <element signature="e#2344#2351#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelSettings.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="82" selection-start="208" selection-end="208" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelConf.settings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ModelConf.settings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="80" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,6 +159,10 @@
         <option value="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/DataSet.java" />
         <option value="$PROJECT_DIR$/settings.xml" />
         <option value="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/SettingsParser.java" />
+        <option value="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelCreator.java" />
+        <option value="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettingsCreator.java" />
+        <option value="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/MachineConfigurationCreator.java" />
+        <option value="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java" />
       </list>
     </option>
   </component>
@@ -205,7 +198,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -263,6 +256,28 @@
               <option name="myItemId" value="real_time_scheduling_system" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealTime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trunk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="real_time_scheduling_system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -288,18 +303,18 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="292" />
-    <property name="OverrideImplement.combined" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="292" />
+    <property name="OverrideImplement.combined" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="296" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="293" />
@@ -320,10 +335,10 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager" selected="Application.SettingsParser">
+  <component name="RunManager" selected="Application.Test">
     <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="real_time_scheduling_system.scheduling.Test" />
       <option name="VM_PARAMETERS" />
@@ -340,8 +355,8 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="SettingsParser" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="real_time_scheduling_system.data_managment.SettingsParser" />
+    <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="real_time_scheduling_system.data_managment.Test" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -370,6 +385,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -395,19 +423,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -446,11 +461,11 @@
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.Test" />
-      <item index="1" class="java.lang.String" itemvalue="Application.SettingsParser" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Test" />
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.SettingsParser" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Test" />
         <item index="1" class="java.lang.String" itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -517,19 +532,19 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294686" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32883316" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32883316" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294686" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294686" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22145145" sideWeight="0.6705314" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22145145" sideWeight="0.65314007" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3468599" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -599,6 +614,34 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/a_scheduling_algorithm/ASchedulingAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/a_scheduling_algorithm/OpenList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/AccessLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="62" selection-end="62" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/ExecutionCostMatrixBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="202" selection-end="202" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/IExecutionCostMatrixBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="17" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
@@ -606,118 +649,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/ISchedulingAlgorithm.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/a_scheduling_algorithm/TaskScheduling.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="77" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="32" selection-start="238" selection-end="238" vertical-scroll-proportion="0.0">
+        <state line="117" column="4" selection-start="3602" selection-end="3734" vertical-scroll-proportion="0.7123077">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/model/Machine.java">
+    <entry file="jar://C:/Java/jdk1.7.0_06/src.zip!/java/util/AbstractMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.1017964">
+        <state line="509" column="18" selection-start="17356" selection-end="17356" vertical-scroll-proportion="0.33300298">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/model/Task.java">
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/ExecutionCostMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="117" selection-end="117" vertical-scroll-proportion="-0.755988">
+        <state line="23" column="18" selection-start="625" selection-end="625" vertical-scroll-proportion="0.37066403">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="33" selection-start="699" selection-end="699" vertical-scroll-proportion="0.27994013">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Java/jdk1.7.0_06/src.zip!/java/lang/NumberFormatException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.76461536">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Java/jdk1.7.0_06/src.zip!/java/lang/Integer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="480" column="0" selection-start="17387" selection-end="17387" vertical-scroll-proportion="0.3323077">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="57" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#939#948#0" expanded="true" />
-            <element signature="e#1640#1649#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlDocument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="1" selection-start="6830" selection-end="6830" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="20" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/model/CloudSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="86" selection-end="86" vertical-scroll-proportion="0.06739346">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ILoadSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="27" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0">
+        <state line="25" column="53" selection-start="1122" selection-end="1122" vertical-scroll-proportion="0.3369673">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/model/MachineConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="117" selection-end="117" vertical-scroll-proportion="0.0">
+        <state line="4" column="13" selection-start="117" selection-end="117" vertical-scroll-proportion="0.06739346">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.xml">
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ILoadSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="27" selection-start="737" selection-end="737" vertical-scroll-proportion="0.0">
+        <state line="8" column="21" selection-start="295" selection-end="308" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/SettingsParser.java">
+    <entry file="file://$PROJECT_DIR$/ModelConf.settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="127" selection-start="593" selection-end="593" vertical-scroll-proportion="0.28892216">
+        <state line="2" column="80" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="82" selection-start="208" selection-end="208" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/MachineConfigurationCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="34" selection-start="3760" selection-end="3760" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2131#2138#0" expanded="true" />
+            <element signature="e#1637#1659#0" expanded="true" />
+            <element signature="e#2344#2351#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettingsCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="40" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="52" selection-start="692" selection-end="692" vertical-scroll-proportion="0.32011893">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
