@@ -12,7 +12,6 @@ import java.io.IOException;
  * Time: 19:39
  */
 public class Test {
-    // TODO write class to create machineSettings
     // TODO Put results in streem
     public static void main(String[] args) throws SAXException, XmlException, ParserConfigurationException, IOException {
         String path = "MachineConf.settings.xml";

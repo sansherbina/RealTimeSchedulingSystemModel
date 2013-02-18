@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3ab0f21-3411-480c-87cd-09b09ed07358" name="Default" comment="XML Parsed.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/MachineConfigurationCreator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/ModelSettingsCreator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java" />
-      <change type="DELETED" beforePath="E:\Documents\Dropbox\DifferentShit\workspace\RealTime\settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="E:\Documents\Dropbox\DifferentShit\workspace\RealTime\trunk\src\real_time_scheduling_system\data_managment\SettingsParser.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java" afterPath="$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java" />
     </list>
     <ignored path="RealTime.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361192673865" ignored="false" />
+    <file path="/Dummy.txt" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361195316193" ignored="false" />
     <file path="/Machine.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1360784705893" ignored="false" />
     <file path="/Schedul.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1360833666389" ignored="false" />
     <file path="/ILoadSettings.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361122447286" ignored="false" />
@@ -19,6 +14,7 @@
     <file path="/ModelCreator.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361188857107" ignored="false" />
     <file path="/Test.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361191941772" ignored="false" />
     <file path="/ModelSettingsCreator.java" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361192473689" ignored="false" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="a3ab0f21-3411-480c-87cd-09b09ed07358" time="1361195998221" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,10 +76,19 @@
       <file leaf-file-name="Test.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="52" selection-start="692" selection-end="692" vertical-scroll-proportion="0.32011893">
+            <state line="13" column="19" selection-start="293" selection-end="293" vertical-scroll-proportion="0.21902874">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XmlDocument.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlDocument.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="13" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -333,7 +338,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -527,7 +532,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-5" y="-5" width="1930" height="1186" extended-state="6" />
+    <frame x="-5" y="-5" width="1930" height="1186" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294686" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -544,7 +549,7 @@
       <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22145145" sideWeight="0.65314007" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22145145" sideWeight="0.6714976" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3468599" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -614,13 +619,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/a_scheduling_algorithm/ASchedulingAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/scheduling/a_scheduling_algorithm/OpenList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="13" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
@@ -725,9 +723,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/XmlDocument.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="13" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/trunk/src/real_time_scheduling_system/data_managment/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="52" selection-start="692" selection-end="692" vertical-scroll-proportion="0.32011893">
+        <state line="13" column="19" selection-start="293" selection-end="293" vertical-scroll-proportion="0.21902874">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
