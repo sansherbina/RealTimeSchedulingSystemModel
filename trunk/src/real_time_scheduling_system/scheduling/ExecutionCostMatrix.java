@@ -6,11 +6,13 @@ import java.util.Arrays;
 public class ExecutionCostMatrix {
 	private float[][] executionCostMatrix;
 	private double[] machinesLoading;
+	private double[] workTimePercentageForTask;
 	private ArrayList<Integer> unschedulableTasks;
 	
-	public ExecutionCostMatrix(float[][] executionCostMatrix, double[] machinesLoading,
+	public ExecutionCostMatrix(float[][] executionCostMatrix, double[] machinesLoading, double[] workTimePercentageForTask,
 			ArrayList<Integer> unschedulableTasks) {
 		super();
+		this.workTimePercentageForTask=workTimePercentageForTask;
 		this.executionCostMatrix = executionCostMatrix;
 		this.unschedulableTasks = unschedulableTasks;
 		this.machinesLoading=machinesLoading;
@@ -26,6 +28,10 @@ public class ExecutionCostMatrix {
 	
 	public double[] getMachinesLoading() {
 		return machinesLoading;
+	}
+
+	public double[] getWorkTimePercentageForTask() {
+		return workTimePercentageForTask;
 	}
 
 	public String toString(){

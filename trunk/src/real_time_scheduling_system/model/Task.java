@@ -11,12 +11,12 @@ public class Task extends AccessLevel{
 	private float requestedExecutionTime;
 	private float workTimePercentage;
 
-	public Task(double memmoryCapacity, double proccessor, float executionTime, float workTimePercentage, int accessLevel){
+	public Task(double memmoryCapacity, double proccessor, float requestedExecutionTime, float workTimePercentage, int accessLevel){
 		super(accessLevel);
 		this.workTimePercentage=workTimePercentage;
 		this.memmoryCapactity=memmoryCapacity;
 		this.processor=proccessor;
-		this.executionTime=executionTime;
+		this.requestedExecutionTime=requestedExecutionTime;
 	}
 	
 	public float operateTask(float operatingTaskTime){

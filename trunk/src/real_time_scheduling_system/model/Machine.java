@@ -23,6 +23,7 @@ public class Machine extends MachineConfiguration{
 		if(executingTasks.size()==0){
 			return;
 		}
+		workTime+=timeInterval;
 		float timeForOneTask=timeInterval/executingTasks.size();
 		for(int i=0;i<executingTasks.size();i++){
 			executingTasks.get(i).operateTask(timeForOneTask);
@@ -46,5 +47,13 @@ public class Machine extends MachineConfiguration{
 			loading+=executingTasks.get(i).getWorkTimePercentage();
 		}
 		return loading;
+	}
+	
+	public void addTask(Task task){
+		this.executingTasks.add(task);
+	}
+
+	public float getWorkTime() {
+		return workTime;
 	}
 }

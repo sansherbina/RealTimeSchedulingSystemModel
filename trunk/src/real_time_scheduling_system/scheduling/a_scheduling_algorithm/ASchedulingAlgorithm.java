@@ -1,20 +1,12 @@
 package real_time_scheduling_system.scheduling.a_scheduling_algorithm;
 
-import java.util.HashMap;
-import real_time_scheduling_system.model.MachineConfiguration;
-import real_time_scheduling_system.model.Task;
 import real_time_scheduling_system.scheduling.ExecutionCostMatrix;
-import real_time_scheduling_system.scheduling.IExecutionCostMatrixBuilder;
 import real_time_scheduling_system.scheduling.ISchedulingAlgorithm;
 
 public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
-	private IExecutionCostMatrixBuilder executionCostMatrixBuilder;
 	public static final int UNSCHEDULED_TASK=-1;
-	
-	public ASchedulingAlgorithm(
-			IExecutionCostMatrixBuilder executionCostMatrixBuilder) {
-		super();
-		this.executionCostMatrixBuilder = executionCostMatrixBuilder;
+	public static final int ITEM_COUNT_FOR_GENERATING_RANDOM_SCHEDULING=5;
+	public ASchedulingAlgorithm() {
 	}
 
 	@Override
@@ -23,8 +15,20 @@ public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 			throw new IllegalArgumentException();
 		}
 		
-		TaskScheduling randomGeneratedScheduling=TaskScheduling.generateRandomScheduling(executionCostMatrix.getExecutionCostMatrix());
-		OpenList openList=new OpenList(randomGeneratedScheduling.getfValue());
+		TaskScheduling randomGeneratedScheduling=null;
+		for(int i=0;i<ITEM_COUNT_FOR_GENERATING_RANDOM_SCHEDULING;i++){
+			randomGeneratedScheduling=TaskScheduling.generateRandomScheduling(executionCostMatrix);
+			if(!randomGeneratedScheduling.isSchedulingOverflowSystem(executionCostMatrix)){
+				break;
+			}else{
+				randomGeneratedScheduling=null;
+			}
+		}
+		float fValueForRandomScheduling=Float.MAX_VALUE;
+		if(randomGeneratedScheduling!=null){
+			fValueForRandomScheduling=randomGeneratedScheduling.getfValue();
+		}
+		OpenList openList=new OpenList(fValueForRandomScheduling);
 		openList.insert(new TaskScheduling(executionCostMatrix.getExecutionCostMatrix().length));
 		TaskScheduling resultScheduling=null;
 		while(true){
@@ -37,7 +41,7 @@ public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 				resultScheduling=taskScheduling;
 				break;
 			}
-			openList.insert(taskScheduling.generateChildren(executionCostMatrix.getExecutionCostMatrix()));
+			openList.insert(taskScheduling.generateChildren(executionCostMatrix));
 		}
 		return resultScheduling;
 	}

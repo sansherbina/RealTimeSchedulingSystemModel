@@ -51,8 +51,13 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 			machinesLoading[i]=machines.get(i).calculateLoading();
 		}
 		
+		double[] workTimePercentageForTask=new double[tasks.size()];
+		for(int i=0;i<workTimePercentageForTask.length;i++){
+			workTimePercentageForTask[i]=tasks.get(i).getWorkTimePercentage();
+		}
+		
 		if(unschedulableTasksList.size()==0){
-			return new ExecutionCostMatrix(executionCost, machinesLoading, null);
+			return new ExecutionCostMatrix(executionCost, machinesLoading,workTimePercentageForTask, null);
 		}
 		float[][] executionCostWithoutUnschedulableTasks=new float[executionCost.length-unschedulableTasksList.size()][];
 		int currentTask=0;
@@ -62,7 +67,7 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 				currentTask++;
 			}
 		}
-		return new ExecutionCostMatrix(executionCostWithoutUnschedulableTasks, machinesLoading, unschedulableTasksList);
+		return new ExecutionCostMatrix(executionCostWithoutUnschedulableTasks, machinesLoading, workTimePercentageForTask, unschedulableTasksList);
 	}
 
 
