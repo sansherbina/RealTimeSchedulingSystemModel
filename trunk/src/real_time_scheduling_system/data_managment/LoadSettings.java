@@ -13,7 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,9 +21,9 @@ import java.util.List;
  * Date: 18.02.13
  * Time: 13:15
  */
-public class LoadSettings implements ILoadSettings{
-	
-	public MachineConfiguration[] loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
+public class LoadSettings implements ILoadSettings {
+
+    public MachineConfiguration[] loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
         int id;
         double memmoryCapacity;
         double[] processors;
@@ -42,13 +41,13 @@ public class LoadSettings implements ILoadSettings{
             Node node = nodeList.item(tmp);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
-                id = Integer.parseInt(element.getElementsByTagName("id").item(0).getChildNodes().item(0).getNodeValue());
-                memmoryCapacity = Double.parseDouble(element.getElementsByTagName("memmoryCapacity").item(0).getChildNodes().item(0).getNodeValue());
+                id = Integer.parseInt(element.getElementsByTagName(ID).item(0).getChildNodes().item(0).getNodeValue());
+                memmoryCapacity = Double.parseDouble(element.getElementsByTagName(MEMMORY_CAPACITY).item(0).getChildNodes().item(0).getNodeValue());
                 ArrayList<Float> listOfProcessors = new ArrayList<Float>();
                 XmlDocument doc = new XmlDocument();
                 XmlNode root = doc.parse(path);
-                XmlNode ratesLevelNode = root.getNodesByTagName("processors").get(tmp);
-                List<XmlNode> proc = ratesLevelNode.getNodesByTagName("proc");
+                XmlNode ratesLevelNode = root.getNodesByTagName(PROCESSORS).get(tmp);
+                List<XmlNode> proc = ratesLevelNode.getNodesByTagName(PROC);
                 for (XmlNode xmlNode : proc) {
                     listOfProcessors.add(Float.parseFloat(xmlNode.getNodeValue()));
                 }
@@ -56,7 +55,7 @@ public class LoadSettings implements ILoadSettings{
                 for (int i = 0; i < processors.length; i++) {
                     processors[i] = listOfProcessors.get(i);
                 }
-                accessLevel = Integer.parseInt(element.getElementsByTagName("accessLevel").item(0).getChildNodes().item(0).getNodeValue());
+                accessLevel = Integer.parseInt(element.getElementsByTagName(ACCESS_LEVEL).item(0).getChildNodes().item(0).getNodeValue());
                 configurations.add(new MachineConfiguration(id, memmoryCapacity, processors, accessLevel));
             }
         }
@@ -67,7 +66,7 @@ public class LoadSettings implements ILoadSettings{
         return machineConfiguration;
     }
 
-	public ModelSettings loadModelSettings(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
+    public ModelSettings loadModelSettings(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
         int minimumTaskTime;
         int maximumTaskTime;
         int inputTaskFlowType;
@@ -79,10 +78,10 @@ public class LoadSettings implements ILoadSettings{
         Document document = documentBuilder.parse(xmlFile);
         document.getDocumentElement().normalize();
 
-        minimumTaskTime = Integer.parseInt(document.getElementsByTagName("minimumTaskTime").item(0).getChildNodes().item(0).getNodeValue());
-        maximumTaskTime = Integer.parseInt(document.getElementsByTagName("maximumTaskTime").item(0).getChildNodes().item(0).getNodeValue());
-        inputTaskFlowType = Integer.parseInt(document.getElementsByTagName("inputTaskFlowType").item(0).getChildNodes().item(0).getNodeValue());
-        taskCount = Integer.parseInt(document.getElementsByTagName("taskCount").item(0).getChildNodes().item(0).getNodeValue());
+        minimumTaskTime = Integer.parseInt(document.getElementsByTagName(MINIMUM_TASK_TIME).item(0).getChildNodes().item(0).getNodeValue());
+        maximumTaskTime = Integer.parseInt(document.getElementsByTagName(MAXIMUM_TASK_TIME).item(0).getChildNodes().item(0).getNodeValue());
+        inputTaskFlowType = Integer.parseInt(document.getElementsByTagName(INPUT_TASK_FLOW_TYPE).item(0).getChildNodes().item(0).getNodeValue());
+        taskCount = Integer.parseInt(document.getElementsByTagName(TASK_COUNT).item(0).getChildNodes().item(0).getNodeValue());
         ModelSettings modelSettings = new ModelSettings(minimumTaskTime, maximumTaskTime, inputTaskFlowType, taskCount);
         return modelSettings;
     }

@@ -40,5 +40,12 @@ public class ModelSettings {
 	public void setTaskCount(int taskCount) {
 		this.taskCount = taskCount;
 	}
-	
+    public String toString() {
+        String result = "\n--- Model Settings ---";
+        result += "\nminimumTaskTime: " + getMinimumTaskTime();
+        result += "\nmaximumTaskTime: " + getMaximumTaskTime();
+        result += "\ninputTaskFlowType: " + getInputTaskFlowType();
+        result += "\ntaskCount: " + getTaskCount();
+        return result;
+    }	
 }
