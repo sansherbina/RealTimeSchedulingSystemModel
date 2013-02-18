@@ -18,18 +18,14 @@ public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 	}
 
 	@Override
-	public HashMap<Integer, Integer> scheduleTask(Task[] tasks,
-			MachineConfiguration[] machines) throws IllegalArgumentException{
-		if(machines==null || machines.length==0){
+	public TaskScheduling scheduleTask(ExecutionCostMatrix executionCostMatrix) throws IllegalArgumentException{
+		if(executionCostMatrix==null){
 			throw new IllegalArgumentException();
 		}
-		if(tasks==null || tasks.length==0){
-			return new HashMap<Integer, Integer>();
-		}
-		ExecutionCostMatrix executionCostMatrix=executionCostMatrixBuilder.buildExecutionCostMatrix(tasks, machines);
-		TaskScheduling randomGeneratedScheduling=TaskScheduling.generateRandomScheduling(tasks.length, machines.length, executionCostMatrix.getExecutionCostMatrix());
+		
+		TaskScheduling randomGeneratedScheduling=TaskScheduling.generateRandomScheduling(executionCostMatrix.getExecutionCostMatrix());
 		OpenList openList=new OpenList(randomGeneratedScheduling.getfValue());
-		openList.insert(new TaskScheduling(tasks.length));
+		openList.insert(new TaskScheduling(executionCostMatrix.getExecutionCostMatrix().length));
 		TaskScheduling resultScheduling=null;
 		while(true){
 			TaskScheduling taskScheduling=openList.getFirst();
@@ -43,13 +39,7 @@ public class ASchedulingAlgorithm implements ISchedulingAlgorithm{
 			}
 			openList.insert(taskScheduling.generateChildren(executionCostMatrix.getExecutionCostMatrix()));
 		}
-		System.out.println("Scheduling F result="+resultScheduling.getfValue());
-		HashMap<Integer, Integer> schedulingById=new HashMap<Integer, Integer>();
-		for(int i=0;i<resultScheduling.getMachineForTask().length;i++){
-			int machinePositionInArray=resultScheduling.getMachineForTask()[i];
-			schedulingById.put(tasks[i].getId(), machines[machinePositionInArray].getId());
-		}
-		return schedulingById;
+		return resultScheduling;
 	}
 	
 }

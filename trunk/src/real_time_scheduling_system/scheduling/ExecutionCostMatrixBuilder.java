@@ -2,32 +2,31 @@ package real_time_scheduling_system.scheduling;
 
 import java.util.ArrayList;
 
-import real_time_scheduling_system.model.MachineConfiguration;
+import real_time_scheduling_system.model.Machine;
 import real_time_scheduling_system.model.Task;
 
 public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
-
+	private ITaskOnMachineRelationCalculator taskOnMachineRelationCalculator;
+	public ExecutionCostMatrixBuilder(ITaskOnMachineRelationCalculator taskOnMachineRelationCalculator){
+		if(taskOnMachineRelationCalculator==null){
+			throw new IllegalArgumentException();
+		}
+		this.taskOnMachineRelationCalculator=taskOnMachineRelationCalculator;
+	}
+	
 	@Override
-	public ExecutionCostMatrix buildExecutionCostMatrix(Task[] tasks, MachineConfiguration[] machines) {
-		if(tasks==null || machines==null || machines.length==0 || tasks.length==0){
+	public ExecutionCostMatrix buildExecutionCostMatrix(ArrayList<Task> tasks, ArrayList<Machine> machines) {
+		if(tasks==null || machines==null || machines.size()==0 || tasks.size()==0){
 			throw new IllegalArgumentException();
 		}
 		
-		float[][] executionCost=new float[tasks.length][];
-		double[] machinesProcessors=new double[machines.length];
-		for(int i=0;i<machines.length;i++){
-			for(int j=0;j<machines[i].getProcessors().length;j++){
-				machinesProcessors[i]+=machines[i].getProcessors()[j];
-			}
-		}
+		float[][] executionCost=new float[tasks.size()][];
 		for(int i=0;i<executionCost.length;i++){
-			executionCost[i]=new float[machines.length];
+			executionCost[i]=new float[machines.size()];
 			for(int j=0;j<executionCost[i].length;j++){
-				if(machines[j].getAccessLevel()>=tasks[i].getAccessLevel()){
-					double memmoryRelation=machines[j].getMemmoryCapacity()/tasks[i].getMemmoryCapactity();
-					double machineRelation=machinesProcessors[j]/tasks[i].getProcessor();
-					double relation=(memmoryRelation+machineRelation)/2;
-					executionCost[i][j]=(float)(tasks[i].getRequestedExecutionTime()/relation);
+				if(machines.get(j).getAccessLevel()>=tasks.get(i).getAccessLevel()){
+					double relation=taskOnMachineRelationCalculator.calculateTaskMachineRelation(tasks.get(i), machines.get(j));
+					executionCost[i][j]=(float)(tasks.get(i).getRequestedExecutionTime()/relation);
 				}else{
 					executionCost[i][j]=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION;
 				}
@@ -46,8 +45,14 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 				unschedulableTasksList.add(i);
 			}
 		}
+		
+		double[] machinesLoading=new double[machines.size()];
+		for(int i=0;i<machinesLoading.length;i++){
+			machinesLoading[i]=machines.get(i).calculateLoading();
+		}
+		
 		if(unschedulableTasksList.size()==0){
-			return new ExecutionCostMatrix(executionCost, null);
+			return new ExecutionCostMatrix(executionCost, machinesLoading, null);
 		}
 		float[][] executionCostWithoutUnschedulableTasks=new float[executionCost.length-unschedulableTasksList.size()][];
 		int currentTask=0;
@@ -57,7 +62,8 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder{
 				currentTask++;
 			}
 		}
-		return new ExecutionCostMatrix(executionCostWithoutUnschedulableTasks, unschedulableTasksList);
+		return new ExecutionCostMatrix(executionCostWithoutUnschedulableTasks, machinesLoading, unschedulableTasksList);
 	}
+
 
 }
