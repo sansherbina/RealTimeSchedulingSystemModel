@@ -82,7 +82,7 @@ public class CloudSystem {
 			executedTaskHandler.handleExecutedTasks(unschedulableTasks);
 			TaskScheduling taskScheduling=schedulingAlgorithm.scheduleTask(executionCostMatrix);
 			for(int i=0;i<taskScheduling.getMachineForTask().length;i++){
-				machines.get(taskScheduling.getMachineForTask()[i]).a
+				//machines.get(taskScheduling.getMachineForTask()[i]).a
 			}
 		}
 		////////

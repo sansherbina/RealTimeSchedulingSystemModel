@@ -9,7 +9,7 @@ import real_time_scheduling_system.scheduling.a_scheduling_algorithm.TaskSchedul
 
 public class Test {
 	public static void main(String[] args){
-		MachineConfiguration[] machines=new MachineConfiguration[]{
+		/*MachineConfiguration[] machines=new MachineConfiguration[]{
 				new MachineConfiguration(0, 10, new double[]{10,15}, 0),
 				new MachineConfiguration(1, 10, new double[]{10,15}, 1),
 				new MachineConfiguration(2, 10, new double[]{10,15}, 2)
@@ -29,6 +29,6 @@ public class Test {
 		System.out.println("Best="+TaskScheduling.generateTestScheduling(executionCostMatrix.getExecutionCostMatrix()).getfValue());
 		ASchedulingAlgorithm algorithm=new ASchedulingAlgorithm(executionCostMatrixBuilder);
 		HashMap<Integer, Integer> scheduling=algorithm.scheduleTask(tasks, machines);
-		System.out.println(scheduling.toString());
+		System.out.println(scheduling.toString());*/
 	}
 }

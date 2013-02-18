@@ -1,5 +1,7 @@
 package real_time_scheduling_system.model;
 
+import java.util.Arrays;
+
 import real_time_scheduling_system.scheduling.AccessLevel;
 
 public class MachineConfiguration extends AccessLevel{
@@ -33,4 +35,12 @@ public class MachineConfiguration extends AccessLevel{
 		this.processors = processors;
 	}
 	
-}
+	public String toString() {
+        String result = "\n--- Machine Configuration --- ";
+            result += "\nId: " + getId();
+            result += "\nMemmoryCapacity: " + getMemmoryCapacity();
+            result += "\nProcessors: " + Arrays.toString(getProcessors());
+            result += "\nAccessLevel: " + getAccessLevel();
+        return result;
+    }
+}	
