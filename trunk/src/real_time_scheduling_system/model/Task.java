@@ -9,19 +9,33 @@ public class Task extends AccessLevel{
 	private float creationTime;
 	private float executionTime;
 	private float requestedExecutionTime;
-	
-	public Task(int id, 
-			double memmoryCapactity, double processor, float creationTime,
-			float executionTime, float requestedExecutionTime, int accessLevel) {
-		super(accessLevel);
-		this.id = id;
-		this.memmoryCapactity = memmoryCapactity;
-		this.processor = processor;
-		this.creationTime = creationTime;
-		this.executionTime = executionTime;
-		this.requestedExecutionTime = requestedExecutionTime;
-	}
+	private float workTimePercentage;
 
+	public Task(double memmoryCapacity, double proccessor, float executionTime, float workTimePercentage, int accessLevel){
+		super(accessLevel);
+		this.workTimePercentage=workTimePercentage;
+		this.memmoryCapactity=memmoryCapacity;
+		this.processor=proccessor;
+		this.executionTime=executionTime;
+	}
+	
+	public float operateTask(float operatingTaskTime){
+		executionTime+=operatingTaskTime;
+		float restTime=0;
+		if(executionTime>requestedExecutionTime){
+			restTime=executionTime-requestedExecutionTime;
+			executionTime=requestedExecutionTime;
+		}
+		return restTime;
+	}
+	
+	public boolean isFinishOperatingTask(){
+		if(requestedExecutionTime<=executionTime){
+			return true;
+		}
+		return false;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -63,5 +77,14 @@ public class Task extends AccessLevel{
 	public void setRequestedExecutionTime(float requestedExecutionTime) {
 		this.requestedExecutionTime = requestedExecutionTime;
 	}
+
+	public float getWorkTimePercentage() {
+		return workTimePercentage;
+	}
+
+	public void setWorkTimePercentage(float workTimePercentage) {
+		this.workTimePercentage = workTimePercentage;
+	}
+	
 	
 }

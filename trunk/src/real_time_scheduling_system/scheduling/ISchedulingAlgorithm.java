@@ -1,10 +1,7 @@
 package real_time_scheduling_system.scheduling;
 
-import java.util.HashMap;
-
-import real_time_scheduling_system.model.MachineConfiguration;
-import real_time_scheduling_system.model.Task;
+import real_time_scheduling_system.scheduling.a_scheduling_algorithm.TaskScheduling;
 
 public interface ISchedulingAlgorithm {
-	public HashMap<Integer, Integer> scheduleTask(Task[] tasks, MachineConfiguration[] machines) throws IllegalArgumentException;
+	public TaskScheduling scheduleTask(ExecutionCostMatrix executionCostMatrix) throws IllegalArgumentException;
 }

@@ -20,10 +20,10 @@ public class TaskScheduling{
 		return taskScheduling;
 	}
 	
-	public static TaskScheduling generateRandomScheduling(int taskCount, int machinesCount, float[][] executionCost){
-		TaskScheduling taskScheduling=new TaskScheduling(taskCount);
-		for(int i=0;i<taskCount;i++){
-			int machineNumber=i%machinesCount;
+	protected static TaskScheduling generateRandomScheduling(float[][] executionCost){
+		TaskScheduling taskScheduling=new TaskScheduling(executionCost.length);
+		for(int i=0;i<executionCost.length;i++){
+			int machineNumber=i%executionCost[0].length;
 			if(executionCost[i][machineNumber]==IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
 				int availableMachinesCount=0;
 				for(int j=0;j<executionCost[i].length;j++){
@@ -49,7 +49,7 @@ public class TaskScheduling{
 		return taskScheduling;
 	}
 	
-	public TaskScheduling(int taskCount){
+	protected TaskScheduling(int taskCount){
 		machineForTask=new int[taskCount];
 		Arrays.fill(machineForTask, ASchedulingAlgorithm.UNSCHEDULED_TASK);
 		fValue=0;
@@ -63,7 +63,7 @@ public class TaskScheduling{
 		System.arraycopy(source.machineForTask, 0, machineForTask, 0, source.machineForTask.length);
 	}
 	
-	public void calculateFunctionF(float[][] executionCost){
+	protected void calculateFunctionF(float[][] executionCost){
 		float[] machinesLoading=new float[executionCost[0].length];
 		for(int i=0;i<machineForTask.length;i++){
 			if(machineForTask[i]!=ASchedulingAlgorithm.UNSCHEDULED_TASK){
@@ -84,7 +84,7 @@ public class TaskScheduling{
 		return fValue;
 	}
 	
-	public ArrayList<TaskScheduling> generateChildren(float[][] executionCost){
+	protected ArrayList<TaskScheduling> generateChildren(float[][] executionCost){
 		for(int i=0;i<machineForTask.length;i++){
 			if(machineForTask[i]==ASchedulingAlgorithm.UNSCHEDULED_TASK){
 				ArrayList<TaskScheduling> children=new ArrayList<TaskScheduling>();
@@ -102,7 +102,7 @@ public class TaskScheduling{
 		return null;
 	}
 	
-	public boolean isAllTaskScheduled(){
+	protected boolean isAllTaskScheduled(){
 		for(int i=0;i<machineForTask.length;i++){
 			if(machineForTask[i]==ASchedulingAlgorithm.UNSCHEDULED_TASK){
 				return false;

@@ -22,16 +22,9 @@ import java.util.List;
  * Date: 18.02.13
  * Time: 13:15
  */
-public class MachineConfigurationCreator {
-    private final String path;
-    private MachineConfiguration[] machineConfiguration;
-
-    public MachineConfigurationCreator(String path) throws XmlException, SAXException, ParserConfigurationException, IOException {
-        this.path = path;
-        machineConfiguration = getMachineConfigurations();
-    }
-
-    private MachineConfiguration[] getMachineConfigurations() throws IOException, SAXException, ParserConfigurationException, XmlException {
+public class LoadSettings implements ILoadSettings{
+	
+	public MachineConfiguration[] loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
         int id;
         double memmoryCapacity;
         double[] processors;
@@ -67,22 +60,31 @@ public class MachineConfigurationCreator {
                 configurations.add(new MachineConfiguration(id, memmoryCapacity, processors, accessLevel));
             }
         }
-        machineConfiguration = new MachineConfiguration[configurations.size()];
+        MachineConfiguration[] machineConfiguration = new MachineConfiguration[configurations.size()];
         for (int i = 0; i < configurations.size(); i++) {
             machineConfiguration[i] = configurations.get(i);
         }
         return machineConfiguration;
     }
 
-    public String toString() {
-        String result = "\n--- Machine Configurations --- ";
-        for (int i = 0; i < machineConfiguration.length; i++) {
-            result += "\nId: " + machineConfiguration[i].getId();
-            result += "\nMemmoryCapacity: " + machineConfiguration[i].getMemmoryCapacity();
-            result += "\nProcessors: " + Arrays.toString(machineConfiguration[i].getProcessors());
-            result += "\nAccessLevel: " + machineConfiguration[i].getAccessLevel();
-        }
-        return result;
+	public ModelSettings loadModelSettings(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
+        int minimumTaskTime;
+        int maximumTaskTime;
+        int inputTaskFlowType;
+        int taskCount;
+
+        File xmlFile = new File(path);
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document document = documentBuilder.parse(xmlFile);
+        document.getDocumentElement().normalize();
+
+        minimumTaskTime = Integer.parseInt(document.getElementsByTagName("minimumTaskTime").item(0).getChildNodes().item(0).getNodeValue());
+        maximumTaskTime = Integer.parseInt(document.getElementsByTagName("maximumTaskTime").item(0).getChildNodes().item(0).getNodeValue());
+        inputTaskFlowType = Integer.parseInt(document.getElementsByTagName("inputTaskFlowType").item(0).getChildNodes().item(0).getNodeValue());
+        taskCount = Integer.parseInt(document.getElementsByTagName("taskCount").item(0).getChildNodes().item(0).getNodeValue());
+        ModelSettings modelSettings = new ModelSettings(minimumTaskTime, maximumTaskTime, inputTaskFlowType, taskCount);
+        return modelSettings;
     }
 }
 
