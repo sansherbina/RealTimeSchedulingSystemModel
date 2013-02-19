@@ -3,6 +3,7 @@ package real_time_scheduling_system.scheduling.a_scheduling_algorithm;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import real_time_scheduling_system.scheduling.ExecutionCostMatrix;
 import real_time_scheduling_system.scheduling.IExecutionCostMatrixBuilder;
 
 public class TaskScheduling{
@@ -20,21 +21,39 @@ public class TaskScheduling{
 		return taskScheduling;
 	}
 	
-	protected static TaskScheduling generateRandomScheduling(float[][] executionCost){
-		TaskScheduling taskScheduling=new TaskScheduling(executionCost.length);
-		for(int i=0;i<executionCost.length;i++){
-			int machineNumber=i%executionCost[0].length;
-			if(executionCost[i][machineNumber]==IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
+	public boolean isSchedulingOverflowSystem(ExecutionCostMatrix executionCostMatrix){
+		double[] currentMachinesLoading=new double[executionCostMatrix.getMachinesLoading().length];
+		System.arraycopy(executionCostMatrix.getMachinesLoading(), 0, currentMachinesLoading, 0, currentMachinesLoading.length);
+		for(int i=0;i<machineForTask.length;i++){
+			if(machineForTask[i]==ASchedulingAlgorithm.UNSCHEDULED_TASK){
+				return false;
+			}
+			int machineNumber=machineForTask[i];
+			currentMachinesLoading[machineNumber]+=
+					executionCostMatrix.getWorkTimePercentageForTask()[i]/
+					executionCostMatrix.getExecutionCostMatrix()[i][machineNumber];
+			if(currentMachinesLoading[machineNumber]>1){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static TaskScheduling generateRandomScheduling(ExecutionCostMatrix executionCostMatrix){
+		TaskScheduling taskScheduling=new TaskScheduling(executionCostMatrix.getExecutionCostMatrix().length);
+		for(int i=0;i<executionCostMatrix.getExecutionCostMatrix().length;i++){
+			int machineNumber=i%executionCostMatrix.getExecutionCostMatrix()[0].length;
+			if(executionCostMatrix.getExecutionCostMatrix()[i][machineNumber]==IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
 				int availableMachinesCount=0;
-				for(int j=0;j<executionCost[i].length;j++){
-					if(executionCost[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
+				for(int j=0;j<executionCostMatrix.getExecutionCostMatrix()[i].length;j++){
+					if(executionCostMatrix.getExecutionCostMatrix()[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
 						availableMachinesCount++;
 					}
 				}
 				machineNumber=(int)(Math.random()*availableMachinesCount);
 				int currentPosition=0;
-				for(int j=0;j<executionCost[i].length;j++){
-					if(executionCost[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
+				for(int j=0;j<executionCostMatrix.getExecutionCostMatrix()[i].length;j++){
+					if(executionCostMatrix.getExecutionCostMatrix()[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
 						if(currentPosition==machineNumber){
 							machineNumber=j;
 							break;
@@ -45,7 +64,7 @@ public class TaskScheduling{
 			}
 			taskScheduling.machineForTask[i]=machineNumber;
 		}
-		taskScheduling.calculateFunctionF(executionCost);
+		taskScheduling.calculateFunctionF(executionCostMatrix.getExecutionCostMatrix());
 		return taskScheduling;
 	}
 	
@@ -84,16 +103,18 @@ public class TaskScheduling{
 		return fValue;
 	}
 	
-	protected ArrayList<TaskScheduling> generateChildren(float[][] executionCost){
+	protected ArrayList<TaskScheduling> generateChildren(ExecutionCostMatrix executionCostMatrix){
 		for(int i=0;i<machineForTask.length;i++){
 			if(machineForTask[i]==ASchedulingAlgorithm.UNSCHEDULED_TASK){
 				ArrayList<TaskScheduling> children=new ArrayList<TaskScheduling>();
-				for(int j=0;j<executionCost[0].length;j++){
-					if(executionCost[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
+				for(int j=0;j<executionCostMatrix.getExecutionCostMatrix()[0].length;j++){
+					if(executionCostMatrix.getExecutionCostMatrix()[i][j]!=IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION){
 						TaskScheduling child=new TaskScheduling(this);
 						child.machineForTask[i]=j;
-						child.calculateFunctionF(executionCost);
-						children.add(child);
+						if(!child.isSchedulingOverflowSystem(executionCostMatrix)){
+							child.calculateFunctionF(executionCostMatrix.getExecutionCostMatrix());
+							children.add(child);
+						}
 					}
 				}
 				return children;

@@ -12,7 +12,6 @@ import real_time_scheduling_system.scheduling.a_scheduling_algorithm.TaskSchedul
 public class CloudSystem {
 	private static final float MODELING_TIME_INTERVAL=1;
 	private ArrayList<Machine> machines;
-	private ArrayList<Task> executingTasks;
 	private float currentTime;
 	private ArrayList<Task> inputTaskBuffer;
 	private float lastTaskLoadingTime;
@@ -37,7 +36,6 @@ public class CloudSystem {
 		this.taskLoadingCountBorder=taskLoadingCountBorder;
 		this.taskLoadingTimeInterval=taskLoadingTimeInterval;
 		this.machines=new ArrayList<Machine>();
-		this.executingTasks=new ArrayList<Task>();
 		this.inputTaskBuffer=new ArrayList<Task>();
 		this.currentTime=0;
 		for(int i=0;i<machineConfigurations.size();i++){
@@ -60,7 +58,7 @@ public class CloudSystem {
 		executedTaskHandler.handleExecutedTasks(finishedTasks);
 		////////
 		///Load new tasks from flow
-		ArrayList<Task> newInputTasks=taskFlow.generateTasks();
+		ArrayList<Task> newInputTasks=taskFlow.generateTasks(MODELING_TIME_INTERVAL);
 		for(int i=0;i<newInputTasks.size();i++){
 			newInputTasks.get(i).setId(maxTaskId);
 			maxTaskId++;
@@ -81,12 +79,20 @@ public class CloudSystem {
 			}
 			executedTaskHandler.handleExecutedTasks(unschedulableTasks);
 			TaskScheduling taskScheduling=schedulingAlgorithm.scheduleTask(executionCostMatrix);
+			if(taskScheduling==null){
+				System.out.println("System overflow");
+			}
 			for(int i=0;i<taskScheduling.getMachineForTask().length;i++){
-				//machines.get(taskScheduling.getMachineForTask()[i]).a
+				Task task=inputTaskBuffer.get(i);
+				task.setCreationTime(currentTime);
+				task.setExecutionTime(0);
+				int machineNumber=taskScheduling.getMachineForTask()[i];
+				double relation=executionCostMatrix.getExecutionCostMatrix()[i][machineNumber];
+				task.setRequestedExecutionTime((float)(task.getRequestedExecutionTime()/relation));
+				machines.get(machineNumber).addTask(task);
 			}
 		}
 		////////
-		
 	}
 	
 	public void modelSystem(float modelingTime){
