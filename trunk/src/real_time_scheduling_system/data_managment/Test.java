@@ -1,6 +1,5 @@
 package real_time_scheduling_system.data_managment;
 
-import javafx.scene.chart.Chart;
 import org.jfree.ui.RefineryUtilities;
 import org.xml.sax.SAXException;
 import real_time_scheduling_system.model.MachineConfiguration;
@@ -35,15 +34,15 @@ public class Test {
 
         JFrame f = new JFrame();
         f.setLayout(new BorderLayout());
-        f.add(c.getSplineChart(new DataMass(massX, massY)));
+        f.add(c.getSplineChart(new DataMass(massX, massY), "Name", "X", "Y"));
         f.setSize(new Dimension(900, 500));
         RefineryUtilities.centerFrameOnScreen(f);
         f.setVisible(true);
 
-//        JFrame f1 = new JFrame();
-//        f1.setLayout(new BorderLayout());
-//        f1.add(c.getDualAxisChart(new DataMass(massX, massY)));
-//        f1.setBounds(f.getX() + 100, f.getY() + 200, 900, 500);
-//        f1.setVisible(true);
+        JFrame f1 = new JFrame();
+        f1.setLayout(new BorderLayout());
+        f1.add(c.getDualBarChart(new DataMass(massX, massY), "Name", "X", "Y"));
+        f1.setBounds(f.getX() + 100, f.getY() + 200, 900, 500);
+        f1.setVisible(true);
     }
 }

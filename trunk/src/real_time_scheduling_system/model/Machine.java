@@ -1,8 +1,8 @@
 package real_time_scheduling_system.model;
 
-import java.util.ArrayList;
-
 import real_time_scheduling_system.model.ExecutingTaskResult.ExecutingTaskStatus;
+
+import java.util.ArrayList;
 
 public class Machine extends MachineConfiguration{
 	private ArrayList<Task> executingTasks;

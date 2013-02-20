@@ -2,6 +2,8 @@ package real_time_scheduling_system.data_managment;
 
 import org.jfree.chart.ChartPanel;
 
+import java.io.IOException;
+
 /**
  * Created with IntelliJ IDEA.
  * Creator: Valery Palamarchuk
@@ -9,13 +11,13 @@ import org.jfree.chart.ChartPanel;
  * Time: 19:32
  */
 public interface IChart {
-    public final String NAME_1 = "Graph #100500";
-    public final String X_HERE = "X";
-    public final String Y_HERE = "Y";
-    public final String CHART_NAME = "Chart of bla bla bla";
     public final String FONT = "SansSerif";
+    public final int SAVED_FILE_HEIGHT = 500;
+    public final int SAVED_FILE_WEIGHT = 900;
+    public final int SAVED_FILE_QUALITY = 100;
+    public final String PATH_TO_SAVE_IMG = "e:\\";
 
-    public ChartPanel getSplineChart(DataMass mass);
+    public ChartPanel getSplineChart(DataMass mass, String chartName, String xName, String yName) throws IOException;
 
-//    public ChartPanel getDualAxisChart(DataMass mass);
+    public ChartPanel getDualBarChart(DataMass mass, String chartName, String xName, String yName) throws IOException;
 }
