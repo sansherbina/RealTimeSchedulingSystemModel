@@ -2,7 +2,7 @@ package real_time_scheduling_system.model;
 
 import real_time_scheduling_system.scheduling.AccessLevel;
 
-public class Task extends AccessLevel{
+public class Task extends AccessLevel {
 	private int id;
 	private double memmoryCapactity;
 	private double processor;
@@ -11,53 +11,61 @@ public class Task extends AccessLevel{
 	private float requestedExecutionTime;
 	private float workTimePercentage;
 
-	public Task(double memmoryCapacity, double proccessor, float requestedExecutionTime, float workTimePercentage, int accessLevel){
+	public Task(double memmoryCapacity, double proccessor,
+			float requestedExecutionTime, float workTimePercentage,
+			int accessLevel) {
 		super(accessLevel);
-		this.workTimePercentage=workTimePercentage;
-		this.memmoryCapactity=memmoryCapacity;
-		this.processor=proccessor;
-		this.requestedExecutionTime=requestedExecutionTime;
+		this.workTimePercentage = workTimePercentage;
+		this.memmoryCapactity = memmoryCapacity;
+		this.processor = proccessor;
+		this.requestedExecutionTime = requestedExecutionTime;
 	}
-	
-	public float operateTask(float operatingTaskTime){
-		executionTime+=operatingTaskTime;
-		float restTime=0;
-		if(executionTime>requestedExecutionTime){
-			restTime=executionTime-requestedExecutionTime;
-			executionTime=requestedExecutionTime;
+
+	public float operateTask(float operatingTaskTime) {
+		executionTime += operatingTaskTime;
+		float restTime = 0;
+		if (executionTime > requestedExecutionTime) {
+			restTime = executionTime - requestedExecutionTime;
+			executionTime = requestedExecutionTime;
 		}
 		return restTime;
 	}
-	
-	public boolean isFinishOperatingTask(){
-		if(requestedExecutionTime<=executionTime){
+
+	public boolean isFinishOperatingTask() {
+		if (requestedExecutionTime <= executionTime) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public double getMemmoryCapactity() {
 		return memmoryCapactity;
 	}
+
 	public void setMemmoryCapactity(double memmoryCapactity) {
 		this.memmoryCapactity = memmoryCapactity;
 	}
+
 	public double getProcessor() {
 		return processor;
 	}
+
 	public void setProcessor(double processor) {
 		this.processor = processor;
 	}
+
 	public float getCreationTime() {
 		return creationTime;
 	}
+
 	public void setCreationTime(float creationTime) {
 		this.creationTime = creationTime;
 	}
@@ -85,6 +93,5 @@ public class Task extends AccessLevel{
 	public void setWorkTimePercentage(float workTimePercentage) {
 		this.workTimePercentage = workTimePercentage;
 	}
-	
-	
+
 }

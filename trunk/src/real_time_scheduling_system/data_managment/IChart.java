@@ -17,5 +17,5 @@ public interface IChart {
 
     public ChartPanel getSplineChart(DataMass mass);
 
-//    public ChartPanel getDualAxisChart(DataMass mass);
+    public ChartPanel getDualAxisChart(DataMass mass);
 }

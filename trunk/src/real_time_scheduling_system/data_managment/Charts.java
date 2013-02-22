@@ -52,52 +52,52 @@ public class Charts implements IChart {
         return chartPanel;
     }
 
-//    @Override
-//    public ChartPanel getDualAxisChart(DataMass mass) {
-//        final NumberAxis rangeAxis1 = new NumberAxis("Run");
-//        rangeAxis1.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-//        final BarRenderer renderer1 = new BarRenderer();
-//        renderer1.setSeriesPaint(0, Color.red);
-//        renderer1.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
-//        final CategoryPlot subplot1 = new CategoryPlot(createAxisData(mass), null, rangeAxis1, renderer1);
-//        subplot1.setDomainGridlinesVisible(true);
-//
-//        final ValueAxis axis2 = new NumberAxis("Run Rate");
-//        subplot1.setRangeAxis(1, axis2);
-//        subplot1.setDataset(1, createAxisData(mass));
-//        subplot1.mapDatasetToRangeAxis(1, 1);
-//        final CategoryItemRenderer runrateRenderer1 = new LineAndShapeRenderer();
-//        runrateRenderer1.setSeriesPaint(0, Color.red);
-//
-//        subplot1.setForegroundAlpha(0.7f);
-//        subplot1.setRenderer(0, renderer1);
-//        subplot1.setRenderer(1, runrateRenderer1);
-//
-//        final CategoryAxis domainAxis = new CategoryAxis("Over");
-//        final CombinedDomainCategoryPlot plot =
-//                new CombinedDomainCategoryPlot(domainAxis);
-//
-//        plot.add(subplot1, 1);
-//
-//        final JFreeChart chart = new JFreeChart(
-//                "Score Bord", new Font("SansSerif", Font.BOLD, 12),
-//                plot, true);
-//        ChartUtilities.applyCurrentTheme(chart);
-//        ChartPanel chartPanel = new ChartPanel(chart);
-//        return chartPanel;
-//    }
+    @Override
+    public ChartPanel getDualAxisChart(DataMass mass) {
+        final NumberAxis rangeAxis1 = new NumberAxis("Run");
+        rangeAxis1.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+        final BarRenderer renderer1 = new BarRenderer();
+        renderer1.setSeriesPaint(0, Color.red);
+        renderer1.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+        final CategoryPlot subplot1 = new CategoryPlot(createAxisData(mass), null, rangeAxis1, renderer1);
+        subplot1.setDomainGridlinesVisible(true);
 
-//    private CategoryDataset createAxisData(DataMass mass) {
-//        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//        double[] run = mass.getXmass();
-//        float num = 0;
-//
-//        for (int i = 0; i < run.length; i++) {
-//            num += run[i];
-//            dataset.addValue(num / (i + 1), "Xmass " + (i + 1) + " = " + mass.getXmass()[i], "Period " + (i + 1));
-//        }
-//        return dataset;
-//    }
+        final ValueAxis axis2 = new NumberAxis("Run Rate");
+        subplot1.setRangeAxis(1, axis2);
+        subplot1.setDataset(1, createAxisData(mass));
+        subplot1.mapDatasetToRangeAxis(1, 1);
+        final CategoryItemRenderer runrateRenderer1 = new LineAndShapeRenderer();
+        runrateRenderer1.setSeriesPaint(0, Color.red);
+
+        subplot1.setForegroundAlpha(0.7f);
+        subplot1.setRenderer(0, renderer1);
+        subplot1.setRenderer(1, runrateRenderer1);
+
+        final CategoryAxis domainAxis = new CategoryAxis("Over");
+        final CombinedDomainCategoryPlot plot =
+                new CombinedDomainCategoryPlot(domainAxis);
+
+        plot.add(subplot1, 1);
+
+        final JFreeChart chart = new JFreeChart(
+                "Score Bord", new Font("SansSerif", Font.BOLD, 12),
+                plot, true);
+        ChartUtilities.applyCurrentTheme(chart);
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+    }
+
+    private CategoryDataset createAxisData(DataMass mass) {
+        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        double[] run = mass.getXmass();
+        float num = 0;
+
+        for (int i = 0; i < run.length; i++) {
+            num += run[i];
+            dataset.addValue(num / (i + 1), "Xmass " + (i + 1) + " = " + mass.getXmass()[i], "Period " + (i + 1));
+        }
+        return dataset;
+    }
 
     private XYSeriesCollection createSplineData(DataMass mass) {
         XYSeries series = new XYSeries(NAME_1);

@@ -1,6 +1,6 @@
 package real_time_scheduling_system.data_managment;
 
-import javafx.scene.chart.Chart;
+
 import org.jfree.ui.RefineryUtilities;
 import org.xml.sax.SAXException;
 import real_time_scheduling_system.model.MachineConfiguration;
@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +21,7 @@ public class Test {
     public static void main(String[] args) throws SAXException, XmlException, ParserConfigurationException, IOException {
         String path = "MachineConf.settings.xml";
         ILoadSettings loadSettings = new LoadSettings();
-        MachineConfiguration[] machineConfigurations = loadSettings.loadCloudStucture(path);
+        ArrayList<MachineConfiguration> machineConfigurations = loadSettings.loadCloudStucture(path);
         for (MachineConfiguration machine : machineConfigurations) {
             System.out.println(machine.toString());
         }
@@ -40,10 +41,10 @@ public class Test {
         RefineryUtilities.centerFrameOnScreen(f);
         f.setVisible(true);
 
-//        JFrame f1 = new JFrame();
-//        f1.setLayout(new BorderLayout());
-//        f1.add(c.getDualAxisChart(new DataMass(massX, massY)));
-//        f1.setBounds(f.getX() + 100, f.getY() + 200, 900, 500);
-//        f1.setVisible(true);
+        JFrame f1 = new JFrame();
+        f1.setLayout(new BorderLayout());
+        f1.add(c.getDualAxisChart(new DataMass(massX, massY)));
+        f1.setBounds(f.getX() + 100, f.getY() + 200, 900, 500);
+        f1.setVisible(true);
     }
 }

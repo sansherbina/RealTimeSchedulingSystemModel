@@ -10,9 +10,25 @@ public class DataMass {
     private double[] Xmass;
     private double[] Ymass;
 
+    public DataMass(int experimentCount){
+    	if(experimentCount<=0){
+    		throw new IllegalArgumentException();
+    	}
+    	this.Xmass=new double[experimentCount];
+    	this.Ymass=new double[experimentCount];
+    }
+    
     public DataMass(double[] xmass, double[] ymass) {
         Xmass = xmass;
         Ymass = ymass;
+    }
+    
+    public void addData(int position, double xValue, double yValue){
+    	if(position<0){
+    		throw new IllegalArgumentException();
+    	}
+    	this.Xmass[position]=xValue;
+    	this.Ymass[position]=yValue;
     }
 
     public double[] getXmass() {

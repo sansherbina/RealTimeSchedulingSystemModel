@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class LoadSettings implements ILoadSettings {
 
-    public MachineConfiguration[] loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
+    public ArrayList<MachineConfiguration> loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
         int id;
         double memmoryCapacity;
         double[] processors;
@@ -59,11 +59,8 @@ public class LoadSettings implements ILoadSettings {
                 configurations.add(new MachineConfiguration(id, memmoryCapacity, processors, accessLevel));
             }
         }
-        MachineConfiguration[] machineConfiguration = new MachineConfiguration[configurations.size()];
-        for (int i = 0; i < configurations.size(); i++) {
-            machineConfiguration[i] = configurations.get(i);
-        }
-        return machineConfiguration;
+
+        return configurations;
     }
 
     public ModelSettings loadModelSettings(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {

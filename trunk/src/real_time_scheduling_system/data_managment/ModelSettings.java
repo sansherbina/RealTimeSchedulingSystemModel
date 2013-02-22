@@ -1,12 +1,14 @@
 package real_time_scheduling_system.data_managment;
 
 public class ModelSettings {
-	public static final int NORMAL_DISTRIBUTION=1;
-	public static final int UNIFORM_DISTRIBUTION=2;
 	private int minimumTaskTime;
 	private int maximumTaskTime;
 	private int inputTaskFlowType;
 	private int taskCount;
+	private float taskLoadingTimeInterval;
+	private float taskLoadingCountBorder;
+	private int schedulingAlgorithmType;
+	private float modelingTime;
 	
 	public ModelSettings(int minimumTaskTime, int maximumTaskTime,
 			int inputTaskFlowType, int taskCount) {
@@ -40,7 +42,38 @@ public class ModelSettings {
 	public void setTaskCount(int taskCount) {
 		this.taskCount = taskCount;
 	}
-    public String toString() {
+	
+	
+    public float getTaskLoadingTimeInterval() {
+		return taskLoadingTimeInterval;
+	}
+	public void setTaskLoadingTimeInterval(float taskLoadingTimeInterval) {
+		this.taskLoadingTimeInterval = taskLoadingTimeInterval;
+	}
+	public float getTaskLoadingCountBorder() {
+		return taskLoadingCountBorder;
+	}
+	public void setTaskLoadingCountBorder(float taskLoadingCountBorder) {
+		this.taskLoadingCountBorder = taskLoadingCountBorder;
+	}
+	
+	
+	public int getSchedulingAlgorithmType() {
+		return schedulingAlgorithmType;
+	}
+	public void setSchedulingAlgorithmType(int schedulingAlgorithmType) {
+		this.schedulingAlgorithmType = schedulingAlgorithmType;
+	}
+	
+	
+	
+	public float getModelingTime() {
+		return modelingTime;
+	}
+	public void setModelingTime(float modelingTime) {
+		this.modelingTime = modelingTime;
+	}
+	public String toString() {
         String result = "\n--- Model Settings ---";
         result += "\nminimumTaskTime: " + getMinimumTaskTime();
         result += "\nmaximumTaskTime: " + getMaximumTaskTime();
