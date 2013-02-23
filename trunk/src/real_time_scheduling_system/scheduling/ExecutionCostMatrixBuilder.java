@@ -1,6 +1,7 @@
 package real_time_scheduling_system.scheduling;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import real_time_scheduling_system.model.Machine;
 import real_time_scheduling_system.model.Task;
@@ -17,8 +18,8 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder {
 	}
 
 	@Override
-	public ExecutionCostMatrix buildExecutionCostMatrix(ArrayList<Task> tasks,
-			ArrayList<Machine> machines) {
+	public ExecutionCostMatrix buildExecutionCostMatrix(List<Task> tasks,
+			List<Machine> machines) {
 		if (tasks == null || machines == null || machines.size() == 0
 				|| tasks.size() == 0) {
 			throw new IllegalArgumentException();
@@ -40,7 +41,7 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder {
 				}
 			}
 		}
-		ArrayList<Integer> unschedulableTasksList = new ArrayList<Integer>();
+		List<Integer> unschedulableTasksList = new ArrayList<Integer>();
 		for (int i = 0; i < executionCost.length; i++) {
 			boolean isSchedulable = false;
 			for (int j = 0; j < executionCost[i].length; j++) {

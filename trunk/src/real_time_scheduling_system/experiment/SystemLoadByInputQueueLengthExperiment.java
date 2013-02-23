@@ -1,6 +1,7 @@
 package real_time_scheduling_system.experiment;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import real_time_scheduling_system.data_managment.DataMass;
 import real_time_scheduling_system.data_managment.ModelSettings;
 import real_time_scheduling_system.flow_generators.ITaskFlow;
@@ -18,10 +19,9 @@ public class SystemLoadByInputQueueLengthExperiment implements IExperiment {
 
 	@Override
 	public DataMass makeExperiment(ModelSettings modelSettings,
-			ArrayList<MachineConfiguration> machineConfigurations) {
+			List<MachineConfiguration> machineConfigurations) {
 		ExecutedTasksHandler tasksHandler = new ExecutedTasksHandler();
-		ITaskFlow taskFlow = TaskFlowBuilder.buildTaskFlow(modelSettings
-				.getInputTaskFlowType());
+		ITaskFlow taskFlow = TaskFlowBuilder.buildTaskFlow(modelSettings);
 		ExecutionCostMatrixBuilder executionCostMatrixBuilder = new ExecutionCostMatrixBuilder(
 				new TaskOnMachineRelationCalculator());
 		ISchedulingAlgorithm schedulingAlgorithm = SchedulingAlgorithmBuilder

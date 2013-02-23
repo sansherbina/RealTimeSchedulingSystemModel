@@ -1,7 +1,8 @@
 package real_time_scheduling_system.model;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public interface IExecutedTaskHandler {
-	public void handleExecutedTasks(ArrayList<ExecutingTaskResult> executedTasks);
+	public void handleExecutedTasks(List<ExecutingTaskResult> executedTasks);
 }

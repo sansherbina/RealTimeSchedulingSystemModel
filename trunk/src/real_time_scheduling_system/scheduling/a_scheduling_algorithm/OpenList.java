@@ -1,6 +1,5 @@
 package real_time_scheduling_system.scheduling.a_scheduling_algorithm;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -28,7 +27,7 @@ public class OpenList {
 		list.add(taskScheduling);
 	}
 
-	public void insert(ArrayList<TaskScheduling> tasksScheduling) {
+	public void insert(List<TaskScheduling> tasksScheduling) {
 		if (tasksScheduling == null) {
 			return;
 		}

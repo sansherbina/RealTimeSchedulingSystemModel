@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class LoadSettings implements ILoadSettings {
 
-    public ArrayList<MachineConfiguration> loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
+    public List<MachineConfiguration> loadCloudStucture(String path) throws IOException, SAXException, ParserConfigurationException, XmlException {
         int id;
         double memmoryCapacity;
         double[] processors;
@@ -79,8 +79,9 @@ public class LoadSettings implements ILoadSettings {
         maximumTaskTime = Integer.parseInt(document.getElementsByTagName(MAXIMUM_TASK_TIME).item(0).getChildNodes().item(0).getNodeValue());
         inputTaskFlowType = Integer.parseInt(document.getElementsByTagName(INPUT_TASK_FLOW_TYPE).item(0).getChildNodes().item(0).getNodeValue());
         taskCount = Integer.parseInt(document.getElementsByTagName(TASK_COUNT).item(0).getChildNodes().item(0).getNodeValue());
-        ModelSettings modelSettings = new ModelSettings(minimumTaskTime, maximumTaskTime, inputTaskFlowType, taskCount);
-        return modelSettings;
+        //ModelSettings modelSettings = new ModelSettings(minimumTaskTime, maximumTaskTime, inputTaskFlowType, taskCount);
+        //return modelSettings;
+        return null;
     }
 }
 

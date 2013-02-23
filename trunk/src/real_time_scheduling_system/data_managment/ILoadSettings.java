@@ -6,7 +6,7 @@ import real_time_scheduling_system.model.MachineConfiguration;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ILoadSettings {
     public final String ID = "id";
@@ -19,7 +19,7 @@ public interface ILoadSettings {
     public final String INPUT_TASK_FLOW_TYPE = "inputTaskFlowType";
     public final String TASK_COUNT = "taskCount";
 
-    public ArrayList<MachineConfiguration> loadCloudStucture(String filePath) throws IOException, SAXException, ParserConfigurationException, XmlException;
+    public List<MachineConfiguration> loadCloudStucture(String filePath) throws IOException, SAXException, ParserConfigurationException, XmlException;
 
     public ModelSettings loadModelSettings(String filePath) throws IOException, SAXException, ParserConfigurationException, XmlException;
 }

@@ -1,6 +1,7 @@
 package real_time_scheduling_system.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import real_time_scheduling_system.flow_generators.ITaskFlow;
 import real_time_scheduling_system.model.ExecutingTaskResult.ExecutingTaskStatus;
@@ -13,7 +14,7 @@ public class CloudSystem {
 	private static final float MODELING_TIME_INTERVAL = 1;
 	private ArrayList<Machine> machines;
 	private float currentTime;
-	private ArrayList<Task> inputTaskBuffer;
+	private List<Task> inputTaskBuffer;
 	private float lastTaskLoadingTime;
 	private float taskLoadingTimeInterval;
 	private float taskLoadingCountBorder;
@@ -23,7 +24,7 @@ public class CloudSystem {
 	private ISchedulingAlgorithm schedulingAlgorithm;
 	private int maxTaskId;
 
-	public CloudSystem(ArrayList<MachineConfiguration> machineConfigurations,
+	public CloudSystem(List<MachineConfiguration> machineConfigurations,
 			float taskLoadingTimeInterval, float taskLoadingCountBorder,
 			IExecutedTaskHandler executedTaskHandler, ITaskFlow taskFlow,
 			IExecutionCostMatrixBuilder executionCostMatrixBuilder,
@@ -54,14 +55,14 @@ public class CloudSystem {
 		}
 		// //////
 		// /Output finished tasks
-		ArrayList<ExecutingTaskResult> finishedTasks = new ArrayList<ExecutingTaskResult>();
+		List<ExecutingTaskResult> finishedTasks = new ArrayList<ExecutingTaskResult>();
 		for (int i = 0; i < machines.size(); i++) {
 			finishedTasks.addAll(machines.get(i).getFinishedTasks());
 		}
 		executedTaskHandler.handleExecutedTasks(finishedTasks);
 		// //////
 		// /Load new tasks from flow
-		ArrayList<Task> newInputTasks = taskFlow
+		List<Task> newInputTasks = taskFlow
 				.generateTasks(MODELING_TIME_INTERVAL);
 		for (int i = 0; i < newInputTasks.size(); i++) {
 			newInputTasks.get(i).setId(maxTaskId);
@@ -76,7 +77,7 @@ public class CloudSystem {
 			ExecutionCostMatrix executionCostMatrix = executionCostMatrixBuilder
 					.buildExecutionCostMatrix(inputTaskBuffer, machines);
 			int removedCount = 0;
-			ArrayList<ExecutingTaskResult> unschedulableTasks = new ArrayList<ExecutingTaskResult>();
+			List<ExecutingTaskResult> unschedulableTasks = new ArrayList<ExecutingTaskResult>();
 			for (int i = 0; i < executionCostMatrix.getUnschedulableTasks()
 					.size(); i++) {
 				int taskNumberInInputBuffer = executionCostMatrix

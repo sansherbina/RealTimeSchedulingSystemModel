@@ -1,17 +1,17 @@
 package real_time_scheduling_system.scheduling;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ExecutionCostMatrix {
 	private float[][] executionCostMatrix;
 	private double[] machinesLoading;
 	private double[] workTimePercentageForTask;
-	private ArrayList<Integer> unschedulableTasks;
+	private List<Integer> unschedulableTasks;
 
 	public ExecutionCostMatrix(float[][] executionCostMatrix,
 			double[] machinesLoading, double[] workTimePercentageForTask,
-			ArrayList<Integer> unschedulableTasks) {
+			List<Integer> unschedulableTasks) {
 		super();
 		this.workTimePercentageForTask = workTimePercentageForTask;
 		this.executionCostMatrix = executionCostMatrix;
@@ -23,7 +23,7 @@ public class ExecutionCostMatrix {
 		return executionCostMatrix;
 	}
 
-	public ArrayList<Integer> getUnschedulableTasks() {
+	public List<Integer> getUnschedulableTasks() {
 		return unschedulableTasks;
 	}
 

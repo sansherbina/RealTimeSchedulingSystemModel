@@ -2,6 +2,7 @@ package real_time_scheduling_system.scheduling.a_scheduling_algorithm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import real_time_scheduling_system.scheduling.ExecutionCostMatrix;
 import real_time_scheduling_system.scheduling.IExecutionCostMatrixBuilder;
@@ -113,11 +114,11 @@ public class TaskScheduling {
 		return fValue;
 	}
 
-	protected ArrayList<TaskScheduling> generateChildren(
+	protected List<TaskScheduling> generateChildren(
 			ExecutionCostMatrix executionCostMatrix) {
 		for (int i = 0; i < machineForTask.length; i++) {
 			if (machineForTask[i] == ASchedulingAlgorithm.UNSCHEDULED_TASK) {
-				ArrayList<TaskScheduling> children = new ArrayList<TaskScheduling>();
+				List<TaskScheduling> children = new ArrayList<TaskScheduling>();
 				for (int j = 0; j < executionCostMatrix
 						.getExecutionCostMatrix()[0].length; j++) {
 					if (executionCostMatrix.getExecutionCostMatrix()[i][j] != IExecutionCostMatrixBuilder.PROHIBITED_EXECUTION) {

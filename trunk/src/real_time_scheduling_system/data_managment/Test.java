@@ -1,6 +1,5 @@
 package real_time_scheduling_system.data_managment;
 
-import org.jfree.ui.RefineryUtilities;
 import org.xml.sax.SAXException;
 import real_time_scheduling_system.model.MachineConfiguration;
 
@@ -17,7 +16,7 @@ import java.io.IOException;
  */
 public class Test {
     public static void main(String[] args) throws SAXException, XmlException, ParserConfigurationException, IOException {
-        String path = "MachineConf.settings.xml";
+        /*String path = "MachineConf.settings.xml";
         ILoadSettings loadSettings = new LoadSettings();
         MachineConfiguration[] machineConfigurations = loadSettings.loadCloudStucture(path);
         for (MachineConfiguration machine : machineConfigurations) {
@@ -44,5 +43,6 @@ public class Test {
         f1.add(c.getDualBarChart(new DataMass(massX, massY), "Name", "X", "Y"));
         f1.setBounds(f.getX() + 100, f.getY() + 200, 900, 500);
         f1.setVisible(true);
+        */
     }
 }

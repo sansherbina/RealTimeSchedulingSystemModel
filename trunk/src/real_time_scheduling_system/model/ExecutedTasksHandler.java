@@ -1,6 +1,7 @@
 package real_time_scheduling_system.model;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class ExecutedTasksHandler implements IExecutedTaskHandler {
 	private int succesfullyExecutedTasksCount;
@@ -17,7 +18,7 @@ public class ExecutedTasksHandler implements IExecutedTaskHandler {
 	}
 
 	@Override
-	public void handleExecutedTasks(ArrayList<ExecutingTaskResult> executedTasks) {
+	public void handleExecutedTasks(List<ExecutingTaskResult> executedTasks) {
 		if (executedTasks == null) {
 			return;
 		}
