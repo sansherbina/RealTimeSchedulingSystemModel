@@ -11,21 +11,21 @@
 <body>
 <p> Set model Setting </p>
 <%
-	String error=(String)session.getAttribute(uploadModelSettings.SESSION_PARAMETER_ERROR);
+	HttpSession httpSession=request.getSession(true);
+	String error=(String)httpSession.getAttribute(uploadModelSettings.SESSION_PARAMETER_ERROR);
+	System.out.println("JSP Error="+error);
 	if(error!=null && error.length()!=0){
 %>
 <p> <%=error %> </p>
 	<%} %>
 <form action="uploadModelSettings" method="post" enctype="multipart/form-data">
-    Select Model Setting File <input type="file" name="<%=uploadModelSettings.MODEL_SETTINGS_FILE_NAME %>" /> <br />
-    Select Machine Setting File <input type="file" name="<%=uploadModelSettings.MACHINE_SETTINGS_FILE_NAME %>" /><br />
-    Select experement types 
-    	<select size="<%=IExperiment.ExperimentTypes.values().length %>" name="<%=uploadModelSettings.EXPERIMENTS_LIST %>" multiple="multiple">
-			<% for(int i=0;i<IExperiment.ExperimentTypes.values().length;i++){ %>
-				<option><%=IExperiment.ExperimentTypes.values()[i].name %></option>
+    <br>Select Model Setting File   <input type="file" name="<%=uploadModelSettings.MODEL_SETTINGS_FILE_NAME %>" /> 
+    <br>Select Machine Setting File <input type="file" name="<%=uploadModelSettings.MACHINE_SETTINGS_FILE_NAME %>" />
+    <br> Select experiment types
+       		<% for(int i=0;i<IExperiment.ExperimentTypes.values().length;i++){ %>
+       			<br><input type="checkbox" name="<%=uploadModelSettings.EXPERIMENTS_LIST+i %>"> <%=IExperiment.ExperimentTypes.values()[i].name %>
 			<%} %>
-		</select>
-    <input type="submit" value="Start modeling" />
+    <br><input type="submit" value="Start modeling" />
 </form>
 </body>
 </html>

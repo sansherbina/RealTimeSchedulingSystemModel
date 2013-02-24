@@ -15,4 +15,8 @@ public class SystemExperementResult {
 	public void addGraphicFile(ExperimentTypes experimentType, String filePath) {
 		this.graphicFiles.put(experimentType, filePath);
 	}
+
+	public Map<ExperimentTypes, String> getGraphicFiles() {
+		return graphicFiles;
+	}
 }

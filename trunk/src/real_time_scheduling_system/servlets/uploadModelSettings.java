@@ -1,10 +1,8 @@
 package real_time_scheduling_system.servlets;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,9 +16,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FilenameUtils;
-
-import real_time_scheduling_system.experiment.ExperementBuilder;
 import real_time_scheduling_system.experiment.ExperimentNumberSingleton;
 import real_time_scheduling_system.experiment.IExperiment;
 import real_time_scheduling_system.experiment.SystemExperementManager;
@@ -53,6 +48,7 @@ public class uploadModelSettings extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error="";
+		List<IExperiment.ExperimentTypes> experimentTypes=new ArrayList<>();
 		String modelSettingsFilePath=null;
 		String machineSettingsFilePath=null;
 		int requestId=ExperimentNumberSingleton.getNumber();
@@ -78,21 +74,30 @@ public class uploadModelSettings extends HttpServlet {
 							error+=" Incorect machine settings file;";
 						}
 	                }
+	            }else{
+	            	String fieldName=item.getFieldName();
+	            	if(fieldName!=null && fieldName.length()>EXPERIMENTS_LIST.length()){
+	            		String experimentTypeNumberTxt=fieldName.substring(EXPERIMENTS_LIST.length(),fieldName.length());
+	            		int experimentNumber=-1;
+	            		try{
+	            			experimentNumber=Integer.valueOf(experimentTypeNumberTxt);
+	            		}catch(Exception e){
+	            			continue;
+	            		}
+	            		if(experimentNumber>=0 && experimentNumber<IExperiment.ExperimentTypes.values().length){
+	            			experimentTypes.add(IExperiment.ExperimentTypes.values()[experimentNumber]);
+	            		}
+	            	}
+	            	System.out.println("Field"+item.getFieldName());
 	            }
 	        }
 	    } catch (FileUploadException e) {
 	    	 error+=" Incorect request parameters";
 	    }
-		String[] experimentTypesNames=request.getParameterValues(EXPERIMENTS_LIST);
-		List<IExperiment.ExperimentTypes> experimentTypes=new ArrayList<>();
-		if(experimentTypesNames==null || experimentTypesNames.length==0){
-			error+=" Select at least one type of experiment;";
-		}else{
-			for(int i=0;i<experimentTypesNames.length;i++){
-				experimentTypes.add(IExperiment.ExperimentTypes.valueOf(experimentTypesNames[i]));
-			}
-		}
 		
+		if(experimentTypes==null || experimentTypes.size()==0){
+			error+=" Select at least one type of experiment;";
+		}
 		SystemExperementResult experementResult=null;
 		if(error==null || error.length()==0){
 			try{
@@ -101,10 +106,12 @@ public class uploadModelSettings extends HttpServlet {
 				error+=" Incorect files;";
 			}
 		}
+		HttpSession session=request.getSession(true);
+		session.setAttribute(SESSION_PARAMETER_ERROR, error);
 		if(error!=null && error.length()!=0){
 			response.sendRedirect("modelingSettings.jsp");
 		}else{
-			HttpSession session=request.getSession(true);
+			
 			session.setAttribute(SESSION_PARAMETER_EXPERIMENT_RESULTS,experementResult);
 			response.sendRedirect("modelingResult.jsp");
 		}
