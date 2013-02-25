@@ -32,7 +32,7 @@ import java.io.IOException;
 public class Charts implements IChart {
     public static void saveToFile(JFreeChart chart, String aFileName) throws IOException {
         BufferedImage img = draw(chart, SAVED_FILE_WEIGHT, SAVED_FILE_HEIGHT);
-        FileOutputStream fos = new FileOutputStream(PATH_TO_SAVE_IMG + aFileName);
+        FileOutputStream fos = new FileOutputStream(aFileName);
         JPEGImageEncoder encoder2 = JPEGCodec.createJPEGEncoder(fos);
         JPEGEncodeParam param2 = encoder2.getDefaultJPEGEncodeParam(img);
         param2.setQuality((float) SAVED_FILE_QUALITY, true);
@@ -49,7 +49,7 @@ public class Charts implements IChart {
     }
 
     @Override
-    public ChartPanel getSplineChart(DataMass mass, String chartName, String xName, String yName) throws IOException {
+    public void getSplineChart(DataMass mass, String chartName, String xName, String yName,String filePath) throws IOException {
         // create plot
         NumberAxis xAxis = new NumberAxis(xName);
         xAxis.setAutoRangeIncludesZero(false);
@@ -67,12 +67,11 @@ public class Charts implements IChart {
         ChartUtilities.applyCurrentTheme(chart);
         ChartPanel chartPanel = new ChartPanel(chart);
 
-        saveToFile(chart, "1.jpeg");
-        return chartPanel;
+        saveToFile(chart, filePath);
     }
 
     @Override
-    public ChartPanel getDualBarChart(DataMass mass, String chartName, String xName, String yName) throws IOException {
+    public void getDualBarChart(DataMass mass, String chartName, String xName, String yName,String filePath) throws IOException {
         DefaultCategoryDataset series = createBarData(mass, chartName, yName);
         JFreeChart chart = ChartFactory.createBarChart(chartName, xName, yName, series, PlotOrientation.VERTICAL, false, true, false);
         chart.setBackgroundPaint(Color.yellow);
@@ -84,8 +83,7 @@ public class Charts implements IChart {
         ChartUtilities.applyCurrentTheme(chart);
         ChartPanel chartPanel = new ChartPanel(chart);
 
-        saveToFile(chart, "2.jpeg");
-        return chartPanel;
+        saveToFile(chart, filePath);
     }
 
     private DefaultCategoryDataset createBarData(DataMass mass, String chartName, String yName) {

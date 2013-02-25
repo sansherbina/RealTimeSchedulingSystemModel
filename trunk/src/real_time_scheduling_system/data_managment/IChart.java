@@ -15,9 +15,8 @@ public interface IChart {
     public final int SAVED_FILE_HEIGHT = 500;
     public final int SAVED_FILE_WEIGHT = 900;
     public final int SAVED_FILE_QUALITY = 100;
-    public final String PATH_TO_SAVE_IMG = "e:\\";
 
-    public ChartPanel getSplineChart(DataMass mass, String chartName, String xName, String yName) throws IOException;
+    public void getSplineChart(DataMass mass, String chartName, String xName, String yName, String filePath) throws IOException;
 
-    public ChartPanel getDualBarChart(DataMass mass, String chartName, String xName, String yName) throws IOException;
+    public void getDualBarChart(DataMass mass, String chartName, String xName, String yName, String filePath) throws IOException;
 }

@@ -20,7 +20,7 @@ import real_time_scheduling_system.model.MachineConfiguration;
 public class SystemExperementManager {
 	public static SystemExperementResult makeExperements(
 			String cloudStructureFilePath, String modelingSettingsFile,
-			List<ExperimentTypes> experimentTypes)
+			List<ExperimentTypes> experimentTypes, String graphicsFolder, String graphicsExtention)
 			throws IllegalArgumentException {
 		ILoadSettings settingsLoader = new LoadSettings();
 		List<MachineConfiguration> machineConfigurations = null;
@@ -49,9 +49,10 @@ public class SystemExperementManager {
 					machineConfigurations);
 			String chartName = experimentType.name
 					+ Integer.valueOf(experimentsNumber).toString();
+			String filePath=graphicsFolder+chartName+graphicsExtention;
 			try {
 				chartBuilder.getSplineChart(dataMass, chartName,
-						experimentType.xName, experimentType.yName);
+						experimentType.xName, experimentType.yName, filePath);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
