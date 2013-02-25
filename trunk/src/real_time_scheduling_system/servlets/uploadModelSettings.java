@@ -1,17 +1,5 @@
 package real_time_scheduling_system.servlets;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -21,12 +9,23 @@ import real_time_scheduling_system.experiment.IExperiment;
 import real_time_scheduling_system.experiment.SystemExperementManager;
 import real_time_scheduling_system.experiment.SystemExperementResult;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Servlet implementation class uploadModelSettings
  */
 @WebServlet("/uploadModelSettings")
 public class uploadModelSettings extends HttpServlet {
-	public static final String TEST_PREFIX="C:\\test\\";
+	public static final String STORE_FOLDER="C:\\test\\";
+	public static final String GRAPHIC_EXTENSION=".jpeg";
 	public static final String FILE_EXTENSION=".xml";
 	public static final String MODEL_SETTINGS_FILE_NAME="modelingSettings";
 	public static final String MACHINE_SETTINGS_FILE_NAME="machineSettings";
@@ -60,15 +59,16 @@ public class uploadModelSettings extends HttpServlet {
 	                String fieldName = item.getFieldName();
 	                if(fieldName!=null && fieldName.equals(MODEL_SETTINGS_FILE_NAME)){
 	                	try {
-	                		modelSettingsFilePath=TEST_PREFIX+MODEL_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
-							Util.uploadFile(modelSettingsFilePath, item.getInputStream());
+	                		modelSettingsFilePath=STORE_FOLDER+MODEL_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
+							System.out.println("Filepath="+modelSettingsFilePath);
+	                		Util.uploadFile(modelSettingsFilePath, item.getInputStream());
 						} catch (Exception e) {
 							error+="Incorect model settings file;";
 						}
 	                }
 	                if(fieldName!=null && fieldName.equals(MACHINE_SETTINGS_FILE_NAME)){
 	                	try {
-	                		machineSettingsFilePath=TEST_PREFIX+MACHINE_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
+	                		machineSettingsFilePath=STORE_FOLDER+MACHINE_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
 							Util.uploadFile(machineSettingsFilePath, item.getInputStream());
 						} catch (Exception e) {
 							error+=" Incorect machine settings file;";
@@ -101,7 +101,7 @@ public class uploadModelSettings extends HttpServlet {
 		SystemExperementResult experementResult=null;
 		if(error==null || error.length()==0){
 			try{
-				experementResult=SystemExperementManager.makeExperements(machineSettingsFilePath, modelSettingsFilePath, experimentTypes);
+				experementResult=SystemExperementManager.makeExperements(machineSettingsFilePath, modelSettingsFilePath, experimentTypes, STORE_FOLDER, GRAPHIC_EXTENSION);
 			}catch (Exception e) {
 				error+=" Incorect files;";
 			}
@@ -111,7 +111,6 @@ public class uploadModelSettings extends HttpServlet {
 		if(error!=null && error.length()!=0){
 			response.sendRedirect("modelingSettings.jsp");
 		}else{
-			
 			session.setAttribute(SESSION_PARAMETER_EXPERIMENT_RESULTS,experementResult);
 			response.sendRedirect("modelingResult.jsp");
 		}

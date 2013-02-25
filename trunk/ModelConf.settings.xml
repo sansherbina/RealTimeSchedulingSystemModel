@@ -3,5 +3,21 @@
     <minimumTaskTime>0</minimumTaskTime>
     <maximumTaskTime>10</maximumTaskTime>
 	<inputTaskFlowType>1</inputTaskFlowType>
-	<taskCount>10</taskCount>
+	
+    <taskLoadingTimeInterval>100</taskLoadingTimeInterval>
+    <taskLoadingCountBorder>10.0</taskLoadingCountBorder>
+    <schedulingAlgorithmType>1</schedulingAlgorithmType>
+    <modelingTime>100.0</modelingTime>
+    <normalDistributionM>10.0</normalDistributionM>
+    <normalDistributionSigma>10.0</normalDistributionSigma>
+    <minProcessor>1.0</minProcessor>
+    <maxProcessor>10.0</maxProcessor>
+    <minMemmoryCapacity>10.0</minMemmoryCapacity>
+    <maxMemmoryCapacity>1000.0</maxMemmoryCapacity>
+    <minWorkTimePercentage>10.0</minWorkTimePercentage>
+    <maxWorkTimePercentage>100.0</maxWorkTimePercentage>
+    <minNewTaskSpeed>10.0</minNewTaskSpeed>
+    <maxNewTaskSpeed>100.0</maxNewTaskSpeed>
+    <minAccessLevel>1</minAccessLevel>
+    <maxAccessLevel>10</maxAccessLevel>
 </settings>
