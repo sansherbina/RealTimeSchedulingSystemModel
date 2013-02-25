@@ -21,7 +21,6 @@
 <%
 	HttpSession httpSession=request.getSession(true);
 	String error=(String)httpSession.getAttribute(uploadModelSettings.SESSION_PARAMETER_ERROR);
-	System.out.println("JSP Error="+error);
 	if(error!=null && error.length()!=0){
 %>
 <p style="color:#F00;"> <%=error %> </p>
