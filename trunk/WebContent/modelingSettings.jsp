@@ -12,7 +12,7 @@
 </head>
 <body class="bg" style="background-attachment:fixed;">
 <center><div style="padding-top:200px;  ">
-<div style="background:url(resources/lap1.png) no-repeat; width:760px; height:376px; border-radius:10px;">
+<div style="background:url(resources/lap1.png) no-repeat; width:760px; height:500px; border-radius:10px;">
 <table style="width:426px;">
 <tr>
 <td class="hh1" >
@@ -24,7 +24,7 @@
 	System.out.println("JSP Error="+error);
 	if(error!=null && error.length()!=0){
 %>
-<p> <%=error %> </p>
+<p style="color:#F00;"> <%=error %> </p>
 	<%} %>
 <form action="uploadModelSettings" method="post" enctype="multipart/form-data">
     <p style="color:#FFF; font-size:16px;"> Select Model Setting File:</p> 
