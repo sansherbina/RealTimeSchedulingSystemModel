@@ -118,43 +118,43 @@ public class LoadSettings implements ILoadSettings {
 		taskLoadingTimeInterval = Integer.parseInt(document
 				.getElementsByTagName(LoadSettings.taskLoadingTimeInterval)
 				.item(0).getChildNodes().item(0).getNodeValue());
-		taskLoadingCountBorder = Integer.parseInt(document
+		taskLoadingCountBorder = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.taskLoadingCountBorder)
 				.item(0).getChildNodes().item(0).getNodeValue());
 		schedulingAlgorithmType = Integer.parseInt(document
 				.getElementsByTagName(LoadSettings.schedulingAlgorithmType)
 				.item(0).getChildNodes().item(0).getNodeValue());
-		modelingTime = Integer.parseInt(document
+		modelingTime = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.modelingTime).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		normalDistributionM = Integer.parseInt(document
+		normalDistributionM = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.normalDistributionM).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		normalDistributionSigma = Integer.parseInt(document
+		normalDistributionSigma = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.normalDistributionSigma)
 				.item(0).getChildNodes().item(0).getNodeValue());
-		minProcessor = Integer.parseInt(document
+		minProcessor = Double.parseDouble(document
 				.getElementsByTagName(LoadSettings.minProcessor).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		maxProcessor = Integer.parseInt(document
+		maxProcessor = Double.parseDouble(document
 				.getElementsByTagName(LoadSettings.maxProcessor).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		minMemmoryCapacity = Integer.parseInt(document
+		minMemmoryCapacity = Double.parseDouble(document
 				.getElementsByTagName(LoadSettings.minMemmoryCapacity).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		maxMemmoryCapacity = Integer.parseInt(document
+		maxMemmoryCapacity = Double.parseDouble(document
 				.getElementsByTagName(LoadSettings.maxMemmoryCapacity).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		minWorkTimePercentage = Integer.parseInt(document
+		minWorkTimePercentage = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.minWorkTimePercentage)
 				.item(0).getChildNodes().item(0).getNodeValue());
-		maxWorkTimePercentage = Integer.parseInt(document
+		maxWorkTimePercentage = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.maxWorkTimePercentage)
 				.item(0).getChildNodes().item(0).getNodeValue());
-		minNewTaskSpeed = Integer.parseInt(document
+		minNewTaskSpeed = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.minNewTaskSpeed).item(0)
 				.getChildNodes().item(0).getNodeValue());
-		maxNewTaskSpeed = Integer.parseInt(document
+		maxNewTaskSpeed = Float.parseFloat(document
 				.getElementsByTagName(LoadSettings.maxNewTaskSpeed).item(0)
 				.getChildNodes().item(0).getNodeValue());
 		minAccessLevel = Integer.parseInt(document

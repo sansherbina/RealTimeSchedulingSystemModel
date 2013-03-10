@@ -1,6 +1,6 @@
 <%@page import="real_time_scheduling_system.experiment.IExperiment"%>
 <%@page import="real_time_scheduling_system.servlets.uploadModelSettings"%>
-<%@page import="javax.servlet.http.HttpSession"%>
+<%@page import="javax.servlet.http.HttpSession;"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -30,6 +30,7 @@
     <center><input type="file" name="<%=uploadModelSettings.MODEL_SETTINGS_FILE_NAME %>" /></center>
     <p style="color:#FFF; font-size:16px;"> Select Machine Setting File: </p>
     <center><input type="file" name="<%=uploadModelSettings.MACHINE_SETTINGS_FILE_NAME %>" /></center>
+    <center><input type="checkbox" name="<%=uploadModelSettings.USE_DEFAULT_SETTINGS_FILES %>"> Use default settings files</center>
     <p style="color:#FFF; font-size:16px;"> Select experiment types:</p>
     <div style="font-size:10px;">
        		<% for(int i=0;i<IExperiment.ExperimentTypes.values().length;i++){ %>

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +26,14 @@ import java.util.List;
  */
 @WebServlet("/uploadModelSettings")
 public class uploadModelSettings extends HttpServlet {
-	public static final String STORE_FOLDER="C:\\test\\";
+	public static final String DEFAULT_MODEL_FILE="defaultSettingsFiles/DefaultModelConf.settings.xml";
+	public static final String DEFAULT_MACHINE_FILE="defaultSettingsFiles/DefaultMachineConf.settings.xml";
+	public static final String STORE_FOLDER="/store/";
 	public static final String GRAPHIC_EXTENSION=".jpeg";
 	public static final String FILE_EXTENSION=".xml";
 	public static final String MODEL_SETTINGS_FILE_NAME="modelingSettings";
 	public static final String MACHINE_SETTINGS_FILE_NAME="machineSettings";
+	public static final String USE_DEFAULT_SETTINGS_FILES="useDefaultSettingsFiles";
 	public static final String EXPERIMENTS_LIST="experimentsList";
 	public static final String SESSION_PARAMETER_ERROR="ERROR";
 	public static final String SESSION_PARAMETER_EXPERIMENT_RESULTS="EXPERIMENT_RESULTS";
@@ -48,19 +53,37 @@ public class uploadModelSettings extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error="";
 		List<IExperiment.ExperimentTypes> experimentTypes=new ArrayList<>();
-		String modelSettingsFilePath=null;
-		String machineSettingsFilePath=null;
+		boolean isUseDefaultSettingsFiles=false;
 		int requestId=ExperimentNumberSingleton.getNumber();
+		String webInfFolderPath=getServletContext().getRealPath("/");
+		String storeDirectoryPath=webInfFolderPath+STORE_FOLDER;
+		File storeDirectory=new File(storeDirectoryPath);
+		if(!storeDirectory.exists()){
+			storeDirectory.mkdir();
+		}
+		String modelSettingsFilePath=webInfFolderPath+STORE_FOLDER+MODEL_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;;
+		String machineSettingsFilePath=webInfFolderPath+STORE_FOLDER+MACHINE_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
+		
 		try {
 	        List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-	       
+	        for(FileItem item:items){
+	        	if(item.isFormField() && item.getFieldName().equals(USE_DEFAULT_SETTINGS_FILES)){
+	        		isUseDefaultSettingsFiles=true;
+	        		try {
+	        			
+						Util.uploadFile(machineSettingsFilePath, webInfFolderPath+DEFAULT_MACHINE_FILE);
+						Util.uploadFile(modelSettingsFilePath, webInfFolderPath+DEFAULT_MODEL_FILE);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+	        		break;
+	        	}
+	        }
 	        for (FileItem item : items) {
-	            if (!item.isFormField()) {
+	            if (!item.isFormField() && !isUseDefaultSettingsFiles) {
 	                String fieldName = item.getFieldName();
 	                if(fieldName!=null && fieldName.equals(MODEL_SETTINGS_FILE_NAME)){
 	                	try {
-	                		modelSettingsFilePath=STORE_FOLDER+MODEL_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
-							System.out.println("Filepath="+modelSettingsFilePath);
 	                		Util.uploadFile(modelSettingsFilePath, item.getInputStream());
 						} catch (Exception e) {
 							error+="Incorect model settings file;";
@@ -68,7 +91,6 @@ public class uploadModelSettings extends HttpServlet {
 	                }
 	                if(fieldName!=null && fieldName.equals(MACHINE_SETTINGS_FILE_NAME)){
 	                	try {
-	                		machineSettingsFilePath=STORE_FOLDER+MACHINE_SETTINGS_FILE_NAME+requestId+FILE_EXTENSION;
 							Util.uploadFile(machineSettingsFilePath, item.getInputStream());
 						} catch (Exception e) {
 							error+=" Incorect machine settings file;";
@@ -76,7 +98,7 @@ public class uploadModelSettings extends HttpServlet {
 	                }
 	            }else{
 	            	String fieldName=item.getFieldName();
-	            	if(fieldName!=null && fieldName.length()>EXPERIMENTS_LIST.length()){
+	            	if(fieldName!=null && fieldName.length()>EXPERIMENTS_LIST.length() && !fieldName.equals(USE_DEFAULT_SETTINGS_FILES)){
 	            		String experimentTypeNumberTxt=fieldName.substring(EXPERIMENTS_LIST.length(),fieldName.length());
 	            		int experimentNumber=-1;
 	            		try{
@@ -88,7 +110,6 @@ public class uploadModelSettings extends HttpServlet {
 	            			experimentTypes.add(IExperiment.ExperimentTypes.values()[experimentNumber]);
 	            		}
 	            	}
-	            	System.out.println("Field"+item.getFieldName());
 	            }
 	        }
 	    } catch (FileUploadException e) {
@@ -101,8 +122,14 @@ public class uploadModelSettings extends HttpServlet {
 		SystemExperementResult experementResult=null;
 		if(error==null || error.length()==0){
 			try{
-				experementResult=SystemExperementManager.makeExperements(machineSettingsFilePath, modelSettingsFilePath, experimentTypes, STORE_FOLDER, GRAPHIC_EXTENSION);
+				String URL=request.getRequestURL().toString();
+				int slashIndex=URL.lastIndexOf('/');
+				if(slashIndex!=-1){
+					URL=URL.substring(0,slashIndex);
+				}
+				experementResult=SystemExperementManager.makeExperements(machineSettingsFilePath, modelSettingsFilePath, experimentTypes, webInfFolderPath+STORE_FOLDER, GRAPHIC_EXTENSION, URL+STORE_FOLDER);
 			}catch (Exception e) {
+				e.printStackTrace();
 				error+=" Incorect files;";
 			}
 		}

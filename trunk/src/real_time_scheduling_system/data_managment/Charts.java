@@ -4,7 +4,6 @@ import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
@@ -65,7 +64,6 @@ public class Charts implements IChart {
 
         JFreeChart chart = new JFreeChart(chartName, new Font(FONT, Font.BOLD, 12), plot, true);
         ChartUtilities.applyCurrentTheme(chart);
-        ChartPanel chartPanel = new ChartPanel(chart);
 
         saveToFile(chart, filePath);
     }
@@ -81,7 +79,6 @@ public class Charts implements IChart {
 
         chart.setAntiAlias(false);
         ChartUtilities.applyCurrentTheme(chart);
-        ChartPanel chartPanel = new ChartPanel(chart);
 
         saveToFile(chart, filePath);
     }

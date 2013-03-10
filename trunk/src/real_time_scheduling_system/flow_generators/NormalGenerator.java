@@ -15,7 +15,12 @@ public class NormalGenerator implements IRandomGenerator {
 
 	@Override
 	public double nextRandomValue() {
-		return m + random.nextGaussian() * sigma;
+		double value=m + random.nextGaussian() * sigma;
+		if(value<=0 || value>2*m){
+			return nextRandomValue();
+		}else{
+			return value;
+		}
 	}
-
+	
 }

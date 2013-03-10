@@ -23,6 +23,7 @@ public class CloudSystem {
 	private IExecutionCostMatrixBuilder executionCostMatrixBuilder;
 	private ISchedulingAlgorithm schedulingAlgorithm;
 	private int maxTaskId;
+	private boolean isSystemOverflowed;
 
 	public CloudSystem(List<MachineConfiguration> machineConfigurations,
 			float taskLoadingTimeInterval, float taskLoadingCountBorder,
@@ -32,6 +33,7 @@ public class CloudSystem {
 		if (machineConfigurations == null || machineConfigurations.size() == 0) {
 			throw new IllegalArgumentException();
 		}
+		this.isSystemOverflowed=false;
 		this.schedulingAlgorithm = schedulingAlgorithm;
 		this.maxTaskId = 0;
 		this.executionCostMatrixBuilder = executionCostMatrixBuilder;
@@ -47,7 +49,7 @@ public class CloudSystem {
 		}
 	}
 
-	private void modelSystem() {
+	public void modelSystem() throws SystemOverflowException {
 		currentTime += MODELING_TIME_INTERVAL;
 		// /Execute tasks
 		for (int i = 0; i < machines.size(); i++) {
@@ -69,41 +71,58 @@ public class CloudSystem {
 			maxTaskId++;
 		}
 		inputTaskBuffer.addAll(newInputTasks);
+		System.out.println("InputBuffer");
+		for(Task task:inputTaskBuffer){
+			System.out.println(task.toString());
+		}
 		// //////
 		// /Schedule new tasks if need
-		if (currentTime - lastTaskLoadingTime >= taskLoadingTimeInterval
-				|| inputTaskBuffer.size() >= taskLoadingCountBorder) {
+		if ((currentTime - lastTaskLoadingTime >= taskLoadingTimeInterval
+				|| inputTaskBuffer.size() >= taskLoadingCountBorder) && inputTaskBuffer.size()>0) {
 			lastTaskLoadingTime = currentTime;
 			ExecutionCostMatrix executionCostMatrix = executionCostMatrixBuilder
 					.buildExecutionCostMatrix(inputTaskBuffer, machines);
 			int removedCount = 0;
+			System.out.println("ExecutionCostMatrix");
+			System.out.println(executionCostMatrix.toString());
 			List<ExecutingTaskResult> unschedulableTasks = new ArrayList<ExecutingTaskResult>();
-			for (int i = 0; i < executionCostMatrix.getUnschedulableTasks()
-					.size(); i++) {
-				int taskNumberInInputBuffer = executionCostMatrix
-						.getUnschedulableTasks().get(i);
-				unschedulableTasks.add(new ExecutingTaskResult(inputTaskBuffer
-						.get(taskNumberInInputBuffer),
-						ExecutingTaskStatus.SCHEDULING_ERROR));
-				inputTaskBuffer.remove(taskNumberInInputBuffer - removedCount);
-				removedCount++;
+			if(executionCostMatrix.getUnschedulableTasks()!=null){
+				for (int i = 0; i < executionCostMatrix.getUnschedulableTasks().size(); i++) {
+					int taskNumberInInputBuffer = executionCostMatrix
+							.getUnschedulableTasks().get(i);
+					unschedulableTasks.add(new ExecutingTaskResult(inputTaskBuffer
+							.get(taskNumberInInputBuffer-removedCount),
+							ExecutingTaskStatus.SCHEDULING_ERROR));
+					inputTaskBuffer.remove(taskNumberInInputBuffer - removedCount);
+					removedCount++;
+				}
 			}
 			executedTaskHandler.handleExecutedTasks(unschedulableTasks);
+			System.out.println("Execution matrix="+executionCostMatrix.toString());
+			System.out.println("Start scheduling t="+inputTaskBuffer.size());
 			TaskScheduling taskScheduling = schedulingAlgorithm
 					.scheduleTask(executionCostMatrix);
+			System.out.println("Finish scheduling");
 			if (taskScheduling == null) {
 				System.out.println("System overflow");
+				isSystemOverflowed=true;
+				executionCostMatrix=executionCostMatrixBuilder.buildShortRandomizedExecutionCost(inputTaskBuffer, machines, machines.size());
+				System.out.println("Start second scheduling");
+				taskScheduling=schedulingAlgorithm.scheduleTask(executionCostMatrix);
 			}
-			for (int i = 0; i < taskScheduling.getMachineForTask().length; i++) {
-				Task task = inputTaskBuffer.get(i);
-				task.setCreationTime(currentTime);
-				task.setExecutionTime(0);
-				int machineNumber = taskScheduling.getMachineForTask()[i];
-				double relation = executionCostMatrix.getExecutionCostMatrix()[i][machineNumber];
-				task.setRequestedExecutionTime((float) (task
-						.getRequestedExecutionTime() / relation));
-				machines.get(machineNumber).addTask(task);
+			if(taskScheduling!=null){
+				for (int i = 0; i < taskScheduling.getMachineForTask().length; i++) {
+					Task task = inputTaskBuffer.get(executionCostMatrix.getTaskNumbersInInputBuffer()[i]);
+					task.setCreationTime(currentTime);
+					task.setExecutionTime(0);
+					int machineNumber = taskScheduling.getMachineForTask()[i];
+					double relation = executionCostMatrix.getExecutionCostMatrix()[i][machineNumber];
+					task.setRequestedExecutionTime((float) (task
+							.getRequestedExecutionTime() / relation));
+					machines.get(machineNumber).addTask(task);
+				}
 			}
+			inputTaskBuffer.clear();
 		}
 		// //////
 	}
@@ -114,7 +133,12 @@ public class CloudSystem {
 		}
 		int iterationCount = (int) (modelingTime / MODELING_TIME_INTERVAL);
 		for (int i = 0; i < iterationCount; i++) {
-			modelSystem();
+			try {
+				isSystemOverflowed=false;
+				modelSystem();
+			} catch (SystemOverflowException e) {
+				
+			}
 		}
 	}
 
@@ -128,5 +152,14 @@ public class CloudSystem {
 			machinesWorkLoad += machines.get(i).getWorkTime() / currentTime;
 		}
 		return machinesWorkLoad / machines.size();
+	}
+	
+	public int getTaskCountWorkedInSystem(){
+		int count=0;
+		for(int i=0;i<machines.size();i++){
+			System.out.println("Machine id="+machines.get(i).getId()+" taskCount="+machines.get(i).getExecutingTaskCount());
+			count+=machines.get(i).getExecutingTaskCount();
+		}
+		return count;
 	}
 }

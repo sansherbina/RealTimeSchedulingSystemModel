@@ -1,6 +1,6 @@
 package real_time_scheduling_system.data_managment;
 
-import org.jfree.chart.ChartPanel;
+
 
 import java.io.IOException;
 
@@ -11,6 +11,8 @@ import java.io.IOException;
  * Time: 19:32
  */
 public interface IChart {
+	public static final int SPLINE_CHART_TYPE=1;
+	public static final int DUAL_BAR_CHART_TYPE=2;
     public final String FONT = "SansSerif";
     public final int SAVED_FILE_HEIGHT = 500;
     public final int SAVED_FILE_WEIGHT = 900;

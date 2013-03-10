@@ -18,11 +18,11 @@ public class Test {
 				new double[] { 10, 15 }, 2)));
 
 		ArrayList<Task> tasksList = new ArrayList<>();
-		tasksList.add(new Task(10d, 10d, 10f, 0.1f, 0));
-		tasksList.add(new Task(50d, 50d, 20f, 0.2f, 1));
-		tasksList.add(new Task(20d, 21d, 30f, 0.1f, 2));
-		tasksList.add(new Task(50d, 5d, 10f, 0.2f, 2));
-		tasksList.add(new Task(20d, 26d, 20f, 0.5f, 0));
+		tasksList.add(new Task(10d, 10d, 10f, 0.9f, 0));
+		tasksList.add(new Task(50d, 50d, 20f, 0.9f, 1));
+		tasksList.add(new Task(20d, 21d, 30f, 0.9f, 2));
+		tasksList.add(new Task(50d, 5d, 10f, 0.9f, 2));
+		tasksList.add(new Task(20d, 26d, 20f, 0.9f, 0));
 
 		ExecutionCostMatrixBuilder executionCostMatrixBuilder = new ExecutionCostMatrixBuilder(
 				new TaskOnMachineRelationCalculator());

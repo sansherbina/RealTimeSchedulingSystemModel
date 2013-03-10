@@ -24,7 +24,6 @@
 		IExperiment.ExperimentTypes experimentType=iterator.next();
 		String filePath=experementResult.getGraphicFiles().get(experimentType);
 %>
-<br><p> Graphic <%=experimentType.name %> </p>
 <img src="<%=filePath %>" alt="<%=experimentType.name %>">
 <%} %>
 </body>

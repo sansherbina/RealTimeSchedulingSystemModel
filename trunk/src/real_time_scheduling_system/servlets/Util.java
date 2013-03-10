@@ -1,6 +1,7 @@
 package real_time_scheduling_system.servlets;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
@@ -17,5 +18,11 @@ public class Util {
     	}
     	inputStream.close();
     	outFileOutputStream.close();
+	}
+	
+	public static void uploadFile(String fileDestinationName, String fileSourceName) throws Exception{
+		FileInputStream inputStream=new FileInputStream(new File(fileSourceName));
+		uploadFile(fileDestinationName, inputStream);
+		inputStream.close();
 	}
 }

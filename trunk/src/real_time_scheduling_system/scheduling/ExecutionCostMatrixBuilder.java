@@ -19,9 +19,11 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder {
 
 	@Override
 	public ExecutionCostMatrix buildExecutionCostMatrix(List<Task> tasks,
-			List<Machine> machines) {
+			List<Machine> machines, int[] taskNumberInInputBuffer) {
 		if (tasks == null || machines == null || machines.size() == 0
 				|| tasks.size() == 0) {
+			System.out.println("MC="+machines.size());
+			System.out.println("TC="+tasks.size());
 			throw new IllegalArgumentException();
 		}
 
@@ -67,7 +69,7 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder {
 
 		if (unschedulableTasksList.size() == 0) {
 			return new ExecutionCostMatrix(executionCost, machinesLoading,
-					workTimePercentageForTask, null);
+					workTimePercentageForTask, null, taskNumberInInputBuffer);
 		}
 		float[][] executionCostWithoutUnschedulableTasks = new float[executionCost.length
 				- unschedulableTasksList.size()][];
@@ -80,7 +82,46 @@ public class ExecutionCostMatrixBuilder implements IExecutionCostMatrixBuilder {
 		}
 		return new ExecutionCostMatrix(executionCostWithoutUnschedulableTasks,
 				machinesLoading, workTimePercentageForTask,
-				unschedulableTasksList);
+				unschedulableTasksList, taskNumberInInputBuffer);
+	}
+	
+	public ExecutionCostMatrix buildShortRandomizedExecutionCost(List<Task> tasks,
+			List<Machine> machines, int taskCount){
+		List<Task> randomTakedTasks=new ArrayList<>();
+		List<Task> tasksCopy=new ArrayList<>();
+		tasksCopy.addAll(tasks);
+		int[] taskNumbersInInputBuffer=null;
+		if(tasksCopy.size()<=taskCount){
+			randomTakedTasks.addAll(tasksCopy);
+			taskNumbersInInputBuffer=new int[tasksCopy.size()];
+			for(int i=0;i<taskNumbersInInputBuffer.length;i++){
+				taskNumbersInInputBuffer[i]=i;
+			}
+		}else{
+			taskNumbersInInputBuffer=new int[taskCount];
+			for(int i=0;i<taskCount;i++){
+				int taskNumber=(int)(Math.random()*tasksCopy.size());
+				randomTakedTasks.add(tasksCopy.get(taskNumber));
+				taskNumbersInInputBuffer[i]=tasks.indexOf(tasksCopy.get(taskNumber));
+				tasksCopy.remove(taskNumber);
+			}
+		}
+		return buildExecutionCostMatrix(randomTakedTasks, machines, taskNumbersInInputBuffer);
 	}
 
+	@Override
+	public ExecutionCostMatrix buildExecutionCostMatrix(List<Task> tasks,
+			List<Machine> machines) {
+		if (tasks == null || machines == null || machines.size() == 0
+				|| tasks.size() == 0) {
+			System.out.println("MC="+machines.size());
+			System.out.println("TC="+tasks.size());
+			throw new IllegalArgumentException();
+		}
+		int[] tasksNumberInInputBuffer=new int[tasks.size()];
+		for(int i=0;i<tasksNumberInInputBuffer.length;i++){
+			tasksNumberInInputBuffer[i]=i;
+		}
+		return buildExecutionCostMatrix(tasks, machines, tasksNumberInInputBuffer);
+	}
 }

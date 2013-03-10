@@ -8,15 +8,17 @@ public class ExecutionCostMatrix {
 	private double[] machinesLoading;
 	private double[] workTimePercentageForTask;
 	private List<Integer> unschedulableTasks;
+	private int[] taskNumbersInInputBuffer;
 
 	public ExecutionCostMatrix(float[][] executionCostMatrix,
 			double[] machinesLoading, double[] workTimePercentageForTask,
-			List<Integer> unschedulableTasks) {
+			List<Integer> unschedulableTasks, int[] taskNumbersInInputBuffer) {
 		super();
 		this.workTimePercentageForTask = workTimePercentageForTask;
 		this.executionCostMatrix = executionCostMatrix;
 		this.unschedulableTasks = unschedulableTasks;
 		this.machinesLoading = machinesLoading;
+		this.taskNumbersInInputBuffer=taskNumbersInInputBuffer;
 	}
 
 	public float[][] getExecutionCostMatrix() {
@@ -33,6 +35,14 @@ public class ExecutionCostMatrix {
 
 	public double[] getWorkTimePercentageForTask() {
 		return workTimePercentageForTask;
+	}
+
+	public int[] getTaskNumbersInInputBuffer() {
+		return taskNumbersInInputBuffer;
+	}
+
+	public void setTaskNumbersInInputBuffer(int[] taskNumbersInInputBuffer) {
+		this.taskNumbersInInputBuffer = taskNumbersInInputBuffer;
 	}
 
 	public String toString() {

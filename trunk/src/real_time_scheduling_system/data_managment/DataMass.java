@@ -50,4 +50,15 @@ public class DataMass {
     public int getSize() {
         return Xmass.length;
     }
+
+	@Override
+	public String toString() {
+		String res="DataMass";
+		System.out.println();
+		for(int i=0;i<Xmass.length;i++){
+			res+="X="+Xmass[i]+" Y="+Ymass[i]+'\n';
+		}
+		return res;
+	}
+    
 }

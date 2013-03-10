@@ -94,4 +94,13 @@ public class Task extends AccessLevel {
 		this.workTimePercentage = workTimePercentage;
 	}
 
+	@Override
+	public String toString() {
+		return "Task [id=" + id + ", memmoryCapactity=" + memmoryCapactity
+				+ ", processor=" + processor + ", creationTime=" + creationTime
+				+ ", executionTime=" + executionTime
+				+ ", requestedExecutionTime=" + requestedExecutionTime
+				+ ", workTimePercentage=" + workTimePercentage +", accessLevel="+getAccessLevel()+"]";
+	}
+	
 }

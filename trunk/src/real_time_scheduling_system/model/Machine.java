@@ -63,4 +63,8 @@ public class Machine extends MachineConfiguration {
 	public float getWorkTime() {
 		return workTime;
 	}
+	
+	public int getExecutingTaskCount(){
+		return executingTasks.size();
+	}
 }

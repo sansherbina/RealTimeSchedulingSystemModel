@@ -20,8 +20,8 @@ import real_time_scheduling_system.model.MachineConfiguration;
 public class SystemExperementManager {
 	public static SystemExperementResult makeExperements(
 			String cloudStructureFilePath, String modelingSettingsFile,
-			List<ExperimentTypes> experimentTypes, String graphicsFolder, String graphicsExtention)
-			throws IllegalArgumentException {
+			List<ExperimentTypes> experimentTypes, String graphicsFolder,
+			String graphicsExtention, String folderURL) throws IllegalArgumentException {
 		ILoadSettings settingsLoader = new LoadSettings();
 		List<MachineConfiguration> machineConfigurations = null;
 		try {
@@ -29,6 +29,7 @@ public class SystemExperementManager {
 					.loadCloudStucture(cloudStructureFilePath);
 		} catch (IOException | SAXException | ParserConfigurationException
 				| XmlException e) {
+			e.printStackTrace();
 			throw new IllegalArgumentException();
 		}
 		ModelSettings modelSettings = null;
@@ -37,26 +38,34 @@ public class SystemExperementManager {
 					.loadModelSettings(modelingSettingsFile);
 		} catch (IOException | SAXException | ParserConfigurationException
 				| XmlException e) {
+			e.printStackTrace();
 			throw new IllegalArgumentException();
 		}
 		SystemExperementResult systemExperementResult = new SystemExperementResult();
-		int experimentsNumber = ExperimentNumberSingleton.getNumber();
 		IChart chartBuilder = new Charts();
 		for (ExperimentTypes experimentType : experimentTypes) {
 			IExperiment experiment = ExperementBuilder
 					.buildExperiment(experimentType);
 			DataMass dataMass = experiment.makeExperiment(modelSettings,
 					machineConfigurations);
-			String chartName = experimentType.name
-					+ Integer.valueOf(experimentsNumber).toString();
-			String filePath=graphicsFolder+chartName+graphicsExtention;
+			String chartName = experimentType.name;
+			String filePath = graphicsFolder + chartName + graphicsExtention;
+			String fileURL=folderURL+chartName+graphicsExtention;
 			try {
-				chartBuilder.getSplineChart(dataMass, chartName,
-						experimentType.xName, experimentType.yName, filePath);
+				if (experimentType.chartType == IChart.SPLINE_CHART_TYPE) {
+					chartBuilder.getSplineChart(dataMass, chartName,
+							experimentType.xName, experimentType.yName,
+							filePath);
+				}
+				if (experimentType.chartType == IChart.DUAL_BAR_CHART_TYPE) {
+					chartBuilder.getDualBarChart(dataMass, chartName,
+							experimentType.xName, experimentType.yName,
+							filePath);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			systemExperementResult.addGraphicFile(experimentType, chartName);
+			systemExperementResult.addGraphicFile(experimentType, fileURL);
 		}
 		return systemExperementResult;
 	}

@@ -10,5 +10,9 @@ public interface IExecutionCostMatrixBuilder {
 	float PROHIBITED_EXECUTION = -1f;
 
 	public ExecutionCostMatrix buildExecutionCostMatrix(List<Task> tasks,
+			List<Machine> machines,int[] taskNumberInInputBuffer);
+	public ExecutionCostMatrix buildExecutionCostMatrix(List<Task> tasks,
 			List<Machine> machines);
+	public ExecutionCostMatrix buildShortRandomizedExecutionCost(List<Task> tasks,
+			List<Machine> machines, int taskCount);
 }

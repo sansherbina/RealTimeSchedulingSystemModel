@@ -15,7 +15,7 @@ import real_time_scheduling_system.scheduling.SchedulingAlgorithmBuilder;
 import real_time_scheduling_system.scheduling.TaskOnMachineRelationCalculator;
 
 public class SystemLoadByInputQueueLengthExperiment implements IExperiment {
-	private static final int MODELING_ITERVAL_COUNT = 1000;
+	private static final int MODELING_ITERVAL_COUNT = 50;
 
 	@Override
 	public DataMass makeExperiment(ModelSettings modelSettings,
