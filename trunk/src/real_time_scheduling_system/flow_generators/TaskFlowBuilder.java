@@ -5,6 +5,8 @@ import real_time_scheduling_system.data_managment.ModelSettings;
 public class TaskFlowBuilder {
 	public static final int NORMAL_DISTRIBUTION_TASK_FLOW_TYPE = 1;
 	public static final int UNIFORM_DISTRIBUTION_TASK_FLOW_TYPE = 2;
+    public static final int ERLANG_DISTRIBUTION_TASK_FLOW_TYPE = 3;
+    public static final int PUASSON_DISTRIBUTION_TASK_FLOW_TYPE = 4;
 
 	public static ITaskFlow buildTaskFlow(ModelSettings modelSettings) {
 		IRandomGenerator randomGenerator = null;
@@ -17,7 +19,13 @@ public class TaskFlowBuilder {
 		case UNIFORM_DISTRIBUTION_TASK_FLOW_TYPE:
 			randomGenerator = new UniformGenrator();
 			break;
-		default:
+        case ERLANG_DISTRIBUTION_TASK_FLOW_TYPE:
+            randomGenerator = new ErlangGenerator();
+            break;
+        case PUASSON_DISTRIBUTION_TASK_FLOW_TYPE:
+            randomGenerator = new PuassonGenerator();
+            break;
+        default:
 			randomGenerator = new UniformGenrator();
 		}
 		TaskFlow taskFlow = new TaskFlow(randomGenerator,
