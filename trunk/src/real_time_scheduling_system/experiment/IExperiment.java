@@ -9,16 +9,14 @@ import real_time_scheduling_system.data_managment.DataMass;
 
 public interface IExperiment {
 	enum ExperimentTypes {
-		WAIT_TIME_BY_INPUT_QUEUE_LENGTH("SystemWaitTimeByInputQueueLength", "InputQueueSize",
-				"Wait time", IChart.SPLINE_CHART_TYPE),
 		IDLE_TIME_BY_INPUT_QUEUE_LENGTH("SystemIdleTimeByInputQueueLength", "InputQueueSize",
 				"Idle time", IChart.SPLINE_CHART_TYPE),
-		NORMAL_GENERATOR("Normal distribution", "Probability",
-				"Percentage", IChart.SPLINE_CHART_TYPE),
-		ERLANG_GENERATOR("Erlang distribution", "Probability",
-				"Percentage", IChart.SPLINE_CHART_TYPE),
-		PUASSON_GENERATOR("Puasson distribution", "Probability",
-				"Percentage", IChart.SPLINE_CHART_TYPE);
+		SYSTEM_LOADING_BY_INPUT_QUEUE_LENGTH("SystemLoadingByInputQueueLength", "InputQueueSize",
+				"System loading", IChart.SPLINE_CHART_TYPE),
+		IDLE_TIME_BY_PRIORITY("IdleTimeByPriority", "Priority",
+				"IdleTime", IChart.SPLINE_CHART_TYPE),
+		INPUT_QUEUE_LENGTH_BY_TIME("InputQueueLengthByTime", "Time",
+				"InputQueueLength", IChart.SPLINE_CHART_TYPE);
 		public String name;
 		public String xName;
 		public String yName;

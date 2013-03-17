@@ -22,6 +22,9 @@ public class SystemLoadingByInputQueueLength implements IExperiment {
 			double delta = Math.random() * systemLoad / 10
 					* ((Math.random() < 0.5) ? -1 : 1);
 			systemLoad += delta;
+			if(systemLoad>=1){
+				systemLoad=0.99;
+			}
 			dataMass.addData(i, i, systemLoad);
 
 		}
@@ -30,6 +33,7 @@ public class SystemLoadingByInputQueueLength implements IExperiment {
 			double delta = (Math.random() / 20)
 					* ((Math.random() < 0.5) ? -1 : 1);
 			systemLoad += delta;
+			systemLoad=0.99;
 			dataMass.addData(i, i, systemLoad);
 
 		}

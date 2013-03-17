@@ -14,23 +14,21 @@ public class SystemWorkTimePercentageByTaskAccessLevel implements IExperiment {
 			List<MachineConfiguration> machineConfigurations) {
 		int minAccessLevel = modelSettings.getMinAccessLevel();
 		int maxAccessLevel = modelSettings.getMaxAccessLevel();
-		int leveCount = maxAccessLevel - minAccessLevel + 1;
-		DataMass dataMass = new DataMass(leveCount);
-		double avverage = ((double) 1) / leveCount;
-		double[] values = new double[leveCount];
-		Arrays.fill(values, avverage);
-		double step = avverage / leveCount;
-		double currentStep = step;
-		int a = 1;
-		for (int i = leveCount % 2 == 0 ? leveCount / 2 : leveCount / 2 + 1; i < leveCount; i++) {
-			double delta = currentStep / 10 * Math.random();
-			values[i] += currentStep + delta;
-			values[leveCount / 2 - a] -= currentStep + delta;
-			currentStep += step;
-			a++;
-		}
-		for (int i = 0; i < leveCount; i++) {
-			dataMass.addData(i, minAccessLevel + i, values[i]);
+		int levelCount = maxAccessLevel - minAccessLevel + 1;
+		DataMass dataMass = new DataMass(levelCount);
+		double startValue=55;
+		double endValue=15;
+		double step=(startValue-endValue)/levelCount;
+		double currentValue=startValue;
+		for(int i=0;i<levelCount;i++){
+			double y=currentValue;
+			currentValue-=step;
+			if(Math.random()<0.5){
+				y+=Math.random()*y/10;
+			}else{
+				y-=Math.random()*y/10;
+			}
+			dataMass.addData(i, i+1, y);
 		}
 		return dataMass;
 	}
