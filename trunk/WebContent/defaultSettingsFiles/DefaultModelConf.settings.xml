@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <settings>
-    <minimumTaskTime>1</minimumTaskTime>
-    <maximumTaskTime>10</maximumTaskTime>
+    <minimumTaskTime>10</minimumTaskTime>
+    <maximumTaskTime>20</maximumTaskTime>
 	<inputTaskFlowType>2</inputTaskFlowType>
     <taskLoadingTimeInterval>5</taskLoadingTimeInterval>
     <taskLoadingCountBorder>5.0</taskLoadingCountBorder>
@@ -14,7 +14,7 @@
     <minMemmoryCapacity>1000.0</minMemmoryCapacity>
     <maxMemmoryCapacity>4000.0</maxMemmoryCapacity>
     <minWorkTimePercentage>0.1</minWorkTimePercentage>
-    <maxWorkTimePercentage>0.5</maxWorkTimePercentage>
+    <maxWorkTimePercentage>0.7</maxWorkTimePercentage>
     <minNewTaskSpeed>0.5</minNewTaskSpeed>
     <maxNewTaskSpeed>2.0</maxNewTaskSpeed>
     <minAccessLevel>2</minAccessLevel>

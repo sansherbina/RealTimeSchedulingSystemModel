@@ -9,14 +9,16 @@ import real_time_scheduling_system.data_managment.DataMass;
 
 public interface IExperiment {
 	enum ExperimentTypes {
-		SYSTEM_LOAD_BY_INPUT_QUEUE("SystemLoadingByInputQueue",
-				"InputQueueSize", "SystemLoading", IChart.SPLINE_CHART_TYPE), FAILED_TASK_COUNT_BY_INPUT_QUEUE(
-				"FailedTaskCountByInputQueue", "InputQueueSize",
-				"FailedTaskCount", IChart.SPLINE_CHART_TYPE), FINISHED_TASK_COUNT_BY_INPUT_QUEUE(
-				"FinishedTaskCountByInputQueue", "InputQueueSize",
-				"FinishedTaskCount", IChart.SPLINE_CHART_TYPE), SYSTEM_WORK_TIME_PERCENTAGE_BY_TASK_ACCESS_LEVEL(
-				"SystemWorkTimePercentageByTaskAccessLevel", "Task Priority",
-				"SystemWorkTimePercentage", IChart.DUAL_BAR_CHART_TYPE);
+		WAIT_TIME_BY_INPUT_QUEUE_LENGTH("SystemWaitTimeByInputQueueLength", "InputQueueSize",
+				"Wait time", IChart.SPLINE_CHART_TYPE),
+		IDLE_TIME_BY_INPUT_QUEUE_LENGTH("SystemIdleTimeByInputQueueLength", "InputQueueSize",
+				"Idle time", IChart.SPLINE_CHART_TYPE),
+		NORMAL_GENERATOR("Normal distribution", "Probability",
+				"Percentage", IChart.SPLINE_CHART_TYPE),
+		ERLANG_GENERATOR("Erlang distribution", "Probability",
+				"Percentage", IChart.SPLINE_CHART_TYPE),
+		PUASSON_GENERATOR("Puasson distribution", "Probability",
+				"Percentage", IChart.SPLINE_CHART_TYPE);
 		public String name;
 		public String xName;
 		public String yName;
