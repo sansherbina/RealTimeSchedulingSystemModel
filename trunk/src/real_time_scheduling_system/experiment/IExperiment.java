@@ -14,7 +14,7 @@ public interface IExperiment {
 		SYSTEM_LOADING_BY_INPUT_QUEUE_LENGTH("SystemLoadingByInputQueueLength", "InputQueueSize",
 				"System loading", IChart.SPLINE_CHART_TYPE),
 		IDLE_TIME_BY_PRIORITY("IdleTimeByPriority", "Priority",
-				"IdleTime", IChart.SPLINE_CHART_TYPE),
+				"IdleTime", IChart.DUAL_BAR_CHART_TYPE),
 		INPUT_QUEUE_LENGTH_BY_TIME("InputQueueLengthByTime", "Time",
 				"InputQueueLength", IChart.SPLINE_CHART_TYPE);
 		public String name;

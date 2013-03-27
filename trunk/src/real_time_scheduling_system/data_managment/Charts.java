@@ -57,13 +57,15 @@ public class Charts implements IChart {
 
         XYSplineRenderer renderer1 = new XYSplineRenderer();
         XYPlot plot = new XYPlot(createSplineData(mass, chartName), xAxis, yAxis, renderer1);
-        plot.setBackgroundPaint(Color.lightGray);
-        plot.setDomainGridlinePaint(Color.white);
-        plot.setRangeGridlinePaint(Color.white);
+        renderer1.setSeriesPaint(0, Color.black);
+        plot.setBackgroundPaint(Color.white);
+        
+        plot.setDomainGridlinePaint(Color.black);
+        plot.setRangeGridlinePaint(Color.black);
         plot.setAxisOffset(new RectangleInsets(4, 4, 4, 4));
 
         JFreeChart chart = new JFreeChart(chartName, new Font(FONT, Font.BOLD, 12), plot, true);
-        ChartUtilities.applyCurrentTheme(chart);
+        //ChartUtilities.applyCurrentTheme(chart);
 
         saveToFile(chart, filePath);
     }
@@ -72,13 +74,18 @@ public class Charts implements IChart {
     public void getDualBarChart(DataMass mass, String chartName, String xName, String yName,String filePath) throws IOException {
         DefaultCategoryDataset series = createBarData(mass, chartName, yName);
         JFreeChart chart = ChartFactory.createBarChart(chartName, xName, yName, series, PlotOrientation.VERTICAL, false, true, false);
-        chart.setBackgroundPaint(Color.yellow);
-        chart.getTitle().setPaint(Color.blue);
+        chart.setBackgroundPaint(Color.white);
+        chart.getTitle().setPaint(Color.black);
         CategoryPlot p = chart.getCategoryPlot();
-        p.setRangeGridlinePaint(Color.red);
-
+        p.setRangeGridlinePaint(Color.black);
+        p.setDomainCrosshairPaint(Color.black);
+        p.setRangeCrosshairPaint(Color.black);
+        p.setBackgroundPaint(Color.white);
+        
+        p.setDomainGridlinePaint(Color.black);
+        p.setRangeGridlinePaint(Color.black);
         chart.setAntiAlias(false);
-        ChartUtilities.applyCurrentTheme(chart);
+        //ChartUtilities.applyCurrentTheme(chart);
 
         saveToFile(chart, filePath);
     }
