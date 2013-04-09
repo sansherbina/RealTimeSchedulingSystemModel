@@ -17,8 +17,8 @@ public class IdleTimeByInputQueueLength implements IExperiment{
 		double maxWaitTime=delimiterQueueLength*avverageTaskTime/machineConfigurations.size();
 		double k=(maxWaitTime)/(delimiterQueueLength);
 		double b=0;
-		DataMass dataMass = new DataMass(2*delimiterQueueLength);
-		for (int i = 0; i < 2*delimiterQueueLength; i++) {
+		DataMass dataMass = new DataMass((int)(1.5*delimiterQueueLength));
+		for (int i = 0; i < 1.5*delimiterQueueLength; i++) {
 			double waitTime=0;
 			if(i<delimiterQueueLength){
 				waitTime=k*i+b;

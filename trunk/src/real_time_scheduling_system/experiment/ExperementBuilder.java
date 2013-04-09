@@ -13,6 +13,10 @@ public class ExperementBuilder {
 			return new SystemWorkTimePercentageByTaskAccessLevel();
 		case INPUT_QUEUE_LENGTH_BY_TIME:
 			return new ErlangGeneratorExperiment();
+		case FAILED_TASK_COUNT_BY_INPUT_QUEUE_LENGTH:
+			return new FailedTaskCountByInputQueueSize();
+		case FAILED_TASK_COUNT_PROBABILITY_BY_INPUT_QUEUE_LENGTH:
+			return new FailedTaskCountProbabilityByInputQueueSize();
 		}
 		return null;
 	}

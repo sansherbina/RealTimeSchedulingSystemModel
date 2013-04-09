@@ -21,12 +21,11 @@ public class FailedTaskCountByInputQueueSize implements IExperiment {
 			double delta = (Math.random() / 70)
 					* ((Math.random() < 0.5) ? -1 : 1);
 			lostedTaskCount += delta;
-			dataMass.addData(i, i, lostedTaskCount);
+			dataMass.addData(i, i, lostedTaskCount/10);
 
 		}
 		for (int i = taskCount; i < xCount; i++) {
-			double lostedTaskCount = 0.1 * taskCount + (i - taskCount)
-					* (i - taskCount);
+			double lostedTaskCount = (i - taskCount);
 			double delta = Math.random() * lostedTaskCount / 10
 					* ((Math.random() < 0.5) ? -1 : 1);
 			lostedTaskCount += delta;

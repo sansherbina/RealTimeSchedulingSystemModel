@@ -11,11 +11,12 @@ public class SystemLoadingByInputQueueLength implements IExperiment {
 	@Override
 	public DataMass makeExperiment(ModelSettings modelSettings,
 			List<MachineConfiguration> machineConfigurations) {
-		int xCount = 100;
-		DataMass dataMass = new DataMass(xCount);
+
 		double avverageTaskWorkTime = (modelSettings.getMaxWorkTimePercentage() - modelSettings
 				.getMinWorkTimePercentage()) / 2;
 		int taskCount = (int) (machineConfigurations.size() / avverageTaskWorkTime);
+		int xCount = (int)(taskCount*1.5);
+		DataMass dataMass = new DataMass(xCount);
 		for (int i = 0; i < taskCount; i++) {
 			double systemLoad = (0.5 / (taskCount * taskCount)) * i * i
 					+ (0.5 / taskCount) * i;
@@ -26,7 +27,6 @@ public class SystemLoadingByInputQueueLength implements IExperiment {
 				systemLoad=0.99;
 			}
 			dataMass.addData(i, i, systemLoad);
-
 		}
 		for (int i = taskCount; i < xCount; i++) {
 			double systemLoad = 0.95;

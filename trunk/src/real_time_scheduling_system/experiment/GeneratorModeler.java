@@ -24,11 +24,12 @@ public class GeneratorModeler {
 			partCountArray[partNumber]++;
 		}
 
-		DataMass dataMass=new DataMass(2*partCount);
+		//DataMass dataMass=new DataMass(2*partCount);
+		DataMass dataMass=new DataMass(partCount);
 		for(int i=0;i<partCount;i++){
 			dataMass.addData(i, 1000*interval*i, 1000*((double)partCountArray[i])/experimentCount);
 		}
-		
+		/*
 		for(int i=0;i<partCount;i++){
 			double y=1000*((double)partCountArray[i])/experimentCount;
 			if(Math.random()<0.5){
@@ -37,7 +38,7 @@ public class GeneratorModeler {
 				y-=Math.random()*y/10;
 			}
 			dataMass.addData(partCount+i, 1000*(interval*(i+partCount)), y);
-		}
+		}*/
 		return dataMass;
 	}
 }

@@ -16,7 +16,11 @@ public interface IExperiment {
 		IDLE_TIME_BY_PRIORITY("IdleTimeByPriority", "Priority",
 				"IdleTime", IChart.DUAL_BAR_CHART_TYPE),
 		INPUT_QUEUE_LENGTH_BY_TIME("InputQueueLengthByTime", "Time",
-				"InputQueueLength", IChart.SPLINE_CHART_TYPE);
+				"InputQueueLength", IChart.SPLINE_CHART_TYPE),
+		FAILED_TASK_COUNT_BY_INPUT_QUEUE_LENGTH("FailedTaskCountByInputQueueLength", "InputQueueLength", 
+				"FailedTaskCount", IChart.SPLINE_CHART_TYPE),
+		FAILED_TASK_COUNT_PROBABILITY_BY_INPUT_QUEUE_LENGTH("FailedTaskCountProbabilityByInputQueueLength", "InputQueueLength", 
+				"FailedTaskCountProbability", IChart.SPLINE_CHART_TYPE);
 		public String name;
 		public String xName;
 		public String yName;

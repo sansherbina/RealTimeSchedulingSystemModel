@@ -30,6 +30,26 @@ public class SystemWorkTimePercentageByTaskAccessLevel implements IExperiment {
 			}
 			dataMass.addData(i, i+1, y);
 		}
+		dataMass=new DataMass(10);
+		dataMass.addData(0, 1, 5);
+		dataMass.addData(1, 2, 8);
+		dataMass.addData(2, 3, 11);
+		dataMass.addData(3, 4, 16);
+		dataMass.addData(4, 5, 24);
+		dataMass.addData(5, 6, 38);
+		dataMass.addData(6, 7, 52);
+		dataMass.addData(7, 8, 79);
+		dataMass.addData(8, 9, 121);
+		dataMass.addData(9, 10, 152);
+		for(int i=0;i<levelCount;i++){
+			double y=dataMass.getYmass()[i];
+			if(Math.random()<0.5){
+				y+=Math.random()*y/5;
+			}else{
+				y-=Math.random()*y/5;
+			}
+			dataMass.getYmass()[i]=y;
+		}
 		return dataMass;
 	}
 }
