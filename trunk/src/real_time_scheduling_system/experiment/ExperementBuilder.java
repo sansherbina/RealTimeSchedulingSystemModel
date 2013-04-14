@@ -17,6 +17,14 @@ public class ExperementBuilder {
 			return new FailedTaskCountByInputQueueSize();
 		case FAILED_TASK_COUNT_PROBABILITY_BY_INPUT_QUEUE_LENGTH:
 			return new FailedTaskCountProbabilityByInputQueueSize();
+		case RESOURCES_AMOUNT_BY_SYSTEM_LOAD:
+			return new ResourcesAmountBySystemLoad();
+		case RESOURCES_AMOUNT_BY_INPUT_QUEUE_LENGTH:
+			return new ResourcesAmountByInputQueueLength();
+		case SYSTEM_LOAD_BY_SCALABILITY_LEVEL:
+			return new SystemLoadByScalabilityLevel();
+		case FAIL_PROBABILITY_BY_SCALABILITY_LEVEVEL:
+			return new FailProbabilityByScalabilityLevel();
 		}
 		return null;
 	}

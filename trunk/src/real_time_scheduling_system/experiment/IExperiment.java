@@ -20,7 +20,15 @@ public interface IExperiment {
 		FAILED_TASK_COUNT_BY_INPUT_QUEUE_LENGTH("FailedTaskCountByInputQueueLength", "InputQueueLength", 
 				"FailedTaskCount", IChart.SPLINE_CHART_TYPE),
 		FAILED_TASK_COUNT_PROBABILITY_BY_INPUT_QUEUE_LENGTH("FailedTaskCountProbabilityByInputQueueLength", "InputQueueLength", 
-				"FailedTaskCountProbability", IChart.SPLINE_CHART_TYPE);
+				"FailedTaskCountProbability", IChart.SPLINE_CHART_TYPE),
+		RESOURCES_AMOUNT_BY_SYSTEM_LOAD("ResourcesAmountBySystemLoad", "SystemLoad", 
+				"ResourcesAmount", IChart.SPLINE_CHART_TYPE),
+		RESOURCES_AMOUNT_BY_INPUT_QUEUE_LENGTH("ResourcesAmountyByInputQueueLength", "InputQueueLength", 
+				"ResourcesAmount", IChart.SPLINE_CHART_TYPE),
+		SYSTEM_LOAD_BY_SCALABILITY_LEVEL("SystemLoadByScalabilityLevel","ScalabilityLevel",
+				"SystemLoad", IChart.SPLINE_CHART_TYPE),
+		FAIL_PROBABILITY_BY_SCALABILITY_LEVEVEL("FailProbabilityByScalabilityLevel","ScalabilityLevel",
+				"FailProbability", IChart.SPLINE_CHART_TYPE);
 		public String name;
 		public String xName;
 		public String yName;
